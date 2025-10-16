@@ -1,0 +1,194 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NovaSphere IT Solutions Ltd</title>
+  <meta name="description" content="NovaSphere IT Solutions Ltd delivers cutting-edge, futuristic IT services across East Africa — from cloud computing, cybersecurity, and networking to digital transformation. We empower businesses through innovation, integrity, and excellence in every solution." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Metal+Mania&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="{% static 'Sphere/css/style.css' %}">
+
+</head>
+<body>
+  <!-- Header with Vertical Dropdown Menu -->
+  <header>
+    <div class="logo">Nova<span>Sphere</span></div>
+    <nav>
+      <div class="mobile-menu">
+        <i class="fas fa-bars"></i>
+      </div>
+       <ul>
+        <li><a href="{% url 'homepage' %}">Home</a></li>
+        <li><a href="{% url 'about'%}">About</a></li>
+        <li class="dropdown"><a href="#" class="active">Solutions</a>
+          <ul class="dropdown-menu">
+            <li><a href="{% url 'IT_support' %}">IT Support & Consultancy</a></li>
+            <li><a href="{% url 'software' %}">Software & Systems</a></li>
+            <li><a href="{% url 'hardware' %}">Hardware & Iot</a></li>
+            <li><a href="{% url 'networking' %}">Networking & Connectivity</a></li>
+            <li><a href="{%url 'cybersec' %}">Cyber & Physical Security</a></li>
+            <li><a href="{% url 'cloud' %}">Cloud Computing</a></li>
+          </ul>
+        </li>
+        <li><a href="{% url 'events' %}">Events</a> </li>
+        <li><a href="{%url 'contact' %}">Contact Us</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+ <section class="hero-cloud">
+  <div class="overlay fade-in">
+    <h1>NovaSphere IT Solutions Ltd</h1>
+    <h3><span class="highlight">IT Support & Consultancy</span></h3>
+    <a href="#" class="cta-button">Get Started</a>
+  </div>
+</section>
+
+  <!-- Services Header Section (Separate from modern-services) -->
+  <section class="services-header-section">
+    <div class="services-header-container">
+      <h6 class="services-subtitle">Our Services</h6>
+      <h2 class="services-title">End-to-End IT Solutions</h2>
+      <p class="services-description">Comprehensive technology services to drive your business forward</p>
+    </div>
+  </section>
+
+  <!-- Modern Services Section -->
+  <section class="modern-services">
+    <!-- Background -->
+    <div class="section-bg1">
+      <img src="{% static 'Sphere/images/3148275.jpg' %}" alt="IT Services Background">
+      <div class="bg1-overlay"></div>
+      <!-- Animated Shapes -->
+      <div class="animated-shapes" id="animatedShapes"></div>
+    </div>
+
+    <div class="services-container">
+      <div class="services-text">
+        <h2>Why Choose Our IT Solutions?</h2>
+        <p>We provide dependable IT support, strategic consultancy, and expert project management to streamline your operations. Our team ensures your systems remain secure, reliable, and optimized for peak performance, minimizing downtime and maximizing productivity. Whether you’re a startup, SME, or enterprise, our tailored services are designed to align with your goals and industry requirements.</p>
+        <p>Beyond solving immediate technical issues, we focus on building long-term strategies that enhance business continuity and scalability. By combining hands-on technical expertise with forward-thinking consultancy, we empower organizations to adopt the right technologies, reduce operational costs, and stay competitive in an increasingly digital-first environment.</p>
+      </div>
+      <!-- Services Grid -->
+      <div class="services-grid">
+        <!-- Service Card 3 -->
+        <div class="service-card">
+          <div class="card-content">
+            <div class="service-icon">
+              <i class="fas fa-cloud"></i>
+            </div>
+            <h3>IT Helpdesk Support</h3>
+            <p>24/7 assistance for troubleshooting and resolving IT issues quickly.</p>
+          </div>
+        </div>
+
+        <!-- Service Card 4 -->
+        <div class="service-card">
+          <div class="card-content">
+            <div class="service-icon">
+              <i class="fas fa-code"></i>
+            </div>
+            <h3>Technology Consultancy</h3>
+            <p>We offer expert advice to align IT strategy with your business objectives to influence business growth.</p>
+          </div>
+        </div>
+
+        <!-- Service Card 5 -->
+        <div class="service-card">
+          <div class="card-content">
+            <div class="service-icon">
+              <i class="fas fa-network-wired"></i>
+            </div>
+            <h3>Network Solutions</h3>
+            <p>Robust networking infrastructure to keep your business connected and operational at all times.</p>
+          </div>
+        </div>
+
+        <!-- Service Card 6 -->
+        <div class="service-card">
+          <div class="card-content">
+            <div class="service-icon">
+              <i class="fas fa-chalkboard-teacher"></i>
+            </div>
+            <h3>IT Training & Workshops</h3>
+            <p>Comprehensive training programs to upskill your team and maximize technology investments.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services CTA Section -->
+  <section class="services-cta-section">
+  <div class="services-cta-container">
+  <div class="cta-content">
+    <p>We provide comprehensive solutions to help your business grow and succeed in today's competitive market.</p>
+  </div>
+  <div class="cta-buttons">
+    <a href="#" class="cta-button primary">
+      <i class="fas fa-phone"></i>Contact Us
+    </a>
+    <a href="#" class="cta-button secondary">
+      <i class="fas fa-info-circle"></i>Learn More
+    </a>
+  </div>
+</div>
+</section>
+
+  <footer class="fade-in delay-3">
+    <div class="footer-container">
+      <div class="footer-column">
+        <h3>About NovaSphere</h3>
+        <p>Leading provider of enterprise IT solutions helping businesses transform and grow through innovative technology.</p>
+        <div class="social-links">
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-linkedin"></i></a>
+          <a href="#"><i class="fab fa-facebook"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+      
+      <div class="footer-column">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="{%url 'homepage%'}">Home</a></li>
+          <li><a href="{%url 'about%'}">About Us</a></li>
+          <li><a href="{%url 'contact'%}">Contact</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-column">
+        <h3>Services</h3>
+        <ul>
+          <li><a href="{% url 'IT_support' %}">IT Support & Consultancy</a></li>
+          <li><a href="{% url 'software' %}">Software & Systems</a></li>
+          <li><a href="{% url 'hardware' %}">Hardware & Iot</a></li>
+          <li><a href="{% url 'networking' %}">Networking & Connectivity</a></li>
+          <li><a href="{%url 'cybersec' %}">Cyber & Physical Security</a></li>
+          <li><a href="{% url 'cloud' %}">Cloud Computing</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-column">
+        <h3>Contact Us</h3>
+        <ul class="contact-info">
+          <li><i class="fas fa-map-marker-alt"></i> 123 Tech Street, Nairobi, Kenya</li>
+          <li><i class="fas fa-phone"></i> +254 700 123456</li>
+          <li><i class="fas fa-envelope"></i> info@sybyl.com</li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p>&copy; 2025 NovaSphere. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <script src="{%static 'Sphere/js/main.js' %}"></script>
+</body>
+</html>

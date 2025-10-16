@@ -1,0 +1,192 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NovaSphere IT Solutions Ltd</title>
+  <meta name="description" content="NovaSphere IT Solutions Ltd delivers cutting-edge, futuristic IT services across East Africa — from cloud computing, cybersecurity, and networking to digital transformation. We empower businesses through innovation, integrity, and excellence in every solution." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Metal+Mania&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Your CSS -->
+  <link rel="stylesheet" href="{% static 'Sphere/css/style.css' %}">
+</head>
+<body>
+<!-- Header with Vertical Dropdown Menu -->
+  <header>
+    <div class="logo"><span>No</span>va<span>Sphere</span></div>
+    <nav>
+      <div class="mobile-menu">
+        <i class="fas fa-bars"></i>
+      </div>
+      <ul>
+        <li><a href="{% url 'homepage' %}">Home</a></li>
+        <li><a href="{% url 'about'%}">About</a></li>
+        <li class="dropdown">Solutions
+          <ul class="dropdown-menu">
+            <li><a href="{% url 'IT_support' %}">IT Support & Consultancy</a></li>
+            <li><a href="{% url 'software' %}">Software & Systems</a></li>
+            <li><a href="{% url 'hardware' %}">Hardware & Iot</a></li>
+            <li><a href="{% url 'networking' %}">Networking & Connectivity</a></li>
+            <li><a href="{%url 'cybersec' %}">Cyber & Physical Security</a></li>
+            <li><a href="{% url 'cloud' %}">Cloud Computing</a></li>
+          </ul>
+        </li>
+        <li><a href="{% url 'events' %}" class="active">Events</a></li>
+        <li><a href="{%url 'contact' %}">Contact Us</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-events">
+    <div class="overlay fade-in">
+      <h1>Events</h1>
+      <h3>Training & Events</h3>
+    </div>
+  </section>
+
+<section>
+  <div class="verify-container">
+    <h1>Verify Payment{% if event %} for {{ event.name }}{% endif %}</h1>
+    <p>Please enter your details and M-Pesa confirmation code to complete registration.</p>
+
+    <div class="verify-flex">
+      <!-- LEFT: EVENT DETAILS -->
+      <div class="payment-details">
+        <h3>Event Details</h3>
+        {% if event %}
+        <div class="detail-item">
+          <span class="detail-label">Event:</span>
+          <span class="detail-value">{{ event.name }}</span>
+        </div>
+        <div class="detail-item">
+          <span class="detail-label">Date:</span>
+          <span class="detail-value">{{ event.event_date }}</span>
+        </div>
+        <div class="detail-item">
+          <span class="detail-label">Amount:</span>
+          <span class="detail-value">KSh {{ event.registration_fee }}</span>
+        </div>
+        {% else %}
+        <p>No specific event selected. Please choose one from the form.</p>
+        {% endif %}
+      </div>
+
+      <!-- RIGHT: FORM -->
+      <div class="verify-form">
+        {% if messages %}
+        <div class="message-popup">
+          {% for message in messages %}
+            <div class="alert {{ message.tags }}">
+              {% if message.tags == 'success' %}
+                <i class="fas fa-check-circle"></i>
+              {% elif message.tags == 'error' %}
+                <i class="fas fa-times-circle"></i>
+              {% endif %}
+              <span>{{ message }}</span>
+            </div>
+          {% endfor %}
+        </div>
+        {% endif %}
+
+        <form method="POST">
+          {% csrf_token %}
+
+          <!-- NEW FIELD: Select Event -->
+          <div class="form-group">
+            <label for="id_event">Select Event</label>
+            <select name="event_id" id="id_event" required>
+              <option value="">-- Choose an Event --</option>
+              {% for ev in all_events %}
+                <option value="{{ ev.id }}" {% if event and ev.id == event.id %}selected{% endif %}>
+                  {{ ev.name }} — {{ ev.event_date }}
+                </option>
+              {% endfor %}
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="id_full_name">Full Name</label>
+            <input type="text" name="full_name" id="id_full_name" placeholder="Enter your full name" required>
+          </div>
+
+          <div class="form-group">
+            <label for="id_email">Email Address</label>
+            <input type="email" name="email" id="id_email" placeholder="example@email.com" required>
+          </div>
+
+          <div class="form-group">
+            <label for="id_phone_number">Phone Number</label>
+            <input type="tel" name="phone_number" id="id_phone_number" placeholder="e.g. 07XXXXXXXX" required>
+          </div>
+
+          <div class="form-group">
+            <label for="id_mpesa_code">M-Pesa Code</label>
+            <input type="text" name="mpesa_code" id="id_mpesa_code" placeholder="Enter M-Pesa confirmation code" required>
+          </div>
+
+          <button type="submit" class="btn btn-accent">Submit Payment</button>
+        </form>
+      </div>
+    </div>
+
+    <a href="{% url 'events' %}" class="back-link">← Back to Events</a>
+  </div>
+</section>
+
+<footer class="fade-in delay-3">
+    <div class="footer-container">
+      <div class="footer-column">
+        <h3>About NovaSphere</h3>
+        <p>Leading provider of enterprise IT solutions helping businesses transform and grow through innovative technology.</p>
+        <div class="social-links">
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-linkedin"></i></a>
+          <a href="#"><i class="fab fa-facebook"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+      
+      <div class="footer-column">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="{% url 'homepage' %}">Home</a></li>
+          <li><a href="{% url 'about' %}">About Us</a></li>
+          <li><a href="{% url 'contact' %}">Contact</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-column">
+        <h3>Services</h3>
+        <ul>
+          <li><a href="{% url 'IT_support' %}">IT Support & Consultancy</a></li>
+          <li><a href="{% url 'software' %}">Software & Systems</a></li>
+          <li><a href="{% url 'hardware' %}">Hardware & Iot</a></li>
+          <li><a href="{% url 'networking' %}">Networking & Connectivity</a></li>
+          <li><a href="{% url 'cybersec' %}">Cyber & Physical Security</a></li>
+          <li><a href="{% url 'cloud' %}">Cloud Computing</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-column">
+        <h3>Contact Us</h3>
+        <ul class="contact-info">
+          <li><i class="fas fa-map-marker-alt"></i> 123 Tech Street, Nairobi, Kenya</li>
+          <li><i class="fas fa-phone"></i> +254 700 123456</li>
+          <li><i class="fas fa-envelope"></i> info@novasphere.com</li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p>&copy; 2025 NovaSphere. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <script src="{% static 'Sphere/js/main.js' %}"></script>
+</body>
+</html>
