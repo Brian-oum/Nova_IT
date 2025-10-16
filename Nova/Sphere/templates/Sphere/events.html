@@ -1,0 +1,198 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NovaSphere IT Solutions Ltd</title>
+  <meta name="description" content="NovaSphere IT Solutions Ltd delivers cutting-edge, futuristic IT services across East Africa — from cloud computing, cybersecurity, and networking to digital transformation. We empower businesses through innovation, integrity, and excellence in every solution." />
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Metal+Mania&display=swap" rel="stylesheet">
+
+  <!-- FontAwesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="{% static 'Sphere/css/style.css' %}">
+  <link rel="stylesheet" href="{% static 'Sphere/css/events.css' %}">
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="logo"><span>No</span>va<span>Sphere</span></div>
+    <nav>
+      <div class="mobile-menu"><i class="fas fa-bars"></i></div>
+      <ul>
+        <li><a href="{% url 'homepage' %}">Home</a></li>
+        <li><a href="{% url 'about'%}">About</a></li>
+        <li class="dropdown">Solutions
+          <ul class="dropdown-menu">
+            <li><a href="{% url 'IT_support' %}">IT Support & Consultancy</a></li>
+            <li><a href="{% url 'software' %}">Software & Systems</a></li>
+            <li><a href="{% url 'hardware' %}">Hardware & IoT</a></li>
+            <li><a href="{% url 'networking' %}">Networking & Connectivity</a></li>
+            <li><a href="{% url 'cybersec' %}">Cyber & Physical Security</a></li>
+            <li><a href="{% url 'cloud' %}">Cloud Computing</a></li>
+          </ul>
+        </li>
+        <li><a href="{% url 'events' %}" class="active">Events</a></li>
+        <li><a href="{% url 'contact' %}">Contact Us</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero-events">
+    <div class="overlay fade-in">
+      <h1>NovaSphere IT Solutions Ltd</h1>
+      <h3><span class="highlight">Training & Events</span></h3>
+    </div>
+  </section>
+
+  <!-- Main Event Section -->
+  <main class="event-container1">
+    <h1 class="page-title">Events</h1>
+
+    <!-- === TOGGLE BUTTONS === -->
+    <div class="event-toggle">
+      <button id="upcomingBtn" class="toggle-btn active">Upcoming Events</button>
+      <button id="pastBtn" class="toggle-btn">Past Events</button>
+    </div>
+
+    <!-- === UPCOMING EVENTS === -->
+    <section id="upcomingEvents" class="events-section active">
+      <div class="events-container">
+        {% for event in events %}
+          <div class="event-card">
+            {% if event.image %}
+              <img src="{{ event.image.url }}" alt="{{ event.name }}">
+            {% endif %}
+            <div class="event-card-content">
+              <h2>{{ event.name }}</h2>
+              <p class="short-detail">{{ event.short_detail }}</p>
+
+              <div class="event-meta">
+                <span><i class="far fa-calendar"></i> {{ event.event_date }}</span>
+                <span><i class="far fa-clock"></i> {{ event.event_time }}</span>
+                <span><i class="fas fa-map-marker-alt"></i> {{ event.location }}</span>
+              </div>
+
+              <div class="slots-info">
+                <span class="slots-count"><i class="fas fa-users"></i> {{ event.verified_count }}/{{ event.people_required }} slots</span>
+                <span class="fee">KSh {{ event.registration_fee }}</span>
+              </div>
+
+              {% if event.is_full %}
+                <button class="btn" disabled>Event Full</button>
+              {% else %}
+                <a href="{% url 'payment_instructions' event.id %}">
+                  <button class="btn btn-accent">Register Now</button>
+                </a>
+              {% endif %}
+            </div>
+          </div>
+        {% empty %}
+          <div class="empty-state">
+            <i class="far fa-calendar-times"></i>
+            <h3>No Upcoming Events</h3>
+            <p>We don't have any upcoming events at the moment. Please check back later!</p>
+          </div>
+        {% endfor %}
+      </div>
+    </section>
+
+    <!-- === PAST EVENTS === -->
+    <section id="pastEvents" class="events-section">
+      <div class="events-container">
+        {% for event in past_events %}
+          <div class="event-card past">
+            {% if event.image %}
+              <img src="{{ event.image.url }}" alt="{{ event.name }}">
+            {% endif %}
+            <div class="event-card-content">
+              <h2>{{ event.name }}</h2>
+              <p class="short-detail">{{ event.short_detail }}</p>
+
+              <div class="event-meta">
+                <span><i class="far fa-calendar"></i> {{ event.event_date }}</span>
+                <span><i class="far fa-clock"></i> {{ event.event_time }}</span>
+                <span><i class="fas fa-map-marker-alt"></i> {{ event.location }}</span>
+              </div>
+
+              <button class="btn disabled">Completed</button>
+            </div>
+          </div>
+        {% empty %}
+          <div class="empty-state">
+            <i class="far fa-calendar-check"></i>
+            <h3>No Past Events Yet</h3>
+            <p>Once we complete events, they’ll appear here.</p>
+          </div>
+        {% endfor %}
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-column">
+        <h3>About NovaSphere</h3>
+        <p>Leading provider of enterprise IT solutions helping businesses transform and grow through innovative technology.</p>
+        <div class="social-links">
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-linkedin"></i></a>
+          <a href="#"><i class="fab fa-facebook"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+
+      <div class="footer-column">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="{% url 'homepage' %}">Home</a></li>
+          <li><a href="{% url 'about' %}">About Us</a></li>
+          <li><a href="{% url 'contact' %}">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-column">
+        <h3>Services</h3>
+        <ul>
+          <li><a href="{% url 'IT_support' %}">IT Support & Consultancy</a></li>
+          <li><a href="{% url 'software' %}">Software & Systems</a></li>
+          <li><a href="{% url 'hardware' %}">Hardware & IoT</a></li>
+          <li><a href="{% url 'networking' %}">Networking & Connectivity</a></li>
+          <li><a href="{% url 'cybersec' %}">Cyber & Physical Security</a></li>
+          <li><a href="{% url 'cloud' %}">Cloud Computing</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2025 NovaSphere. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <!-- JS -->
+  <script>
+    document.getElementById("upcomingBtn").addEventListener("click", function() {
+      document.getElementById("upcomingEvents").classList.add("active");
+      document.getElementById("pastEvents").classList.remove("active");
+      this.classList.add("active");
+      document.getElementById("pastBtn").classList.remove("active");
+    });
+
+    document.getElementById("pastBtn").addEventListener("click", function() {
+      document.getElementById("pastEvents").classList.add("active");
+      document.getElementById("upcomingEvents").classList.remove("active");
+      this.classList.add("active");
+      document.getElementById("upcomingBtn").classList.remove("active");
+    });
+  </script>
+
+  <script src="{% static 'Sphere/js/main.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,196 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NovaSphere IT Solutions Ltd</title>
+  <meta name="description" content="NovaSphere IT Solutions Ltd delivers cutting-edge, futuristic IT services across East Africa — from cloud computing, cybersecurity, and networking to digital transformation. We empower businesses through innovation, integrity, and excellence in every solution." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Metal+Mania&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="{% static 'Sphere/css/style.css' %}">
+
+</head>
+<body>
+  <!-- Header with Vertical Dropdown Menu -->
+  <header>
+    <div class="logo"><span>No</span>va<span>Sphere</span></div>
+    <nav>
+      <div class="mobile-menu">
+        <i class="fas fa-bars"></i>
+      </div>
+       <ul>
+        <li><a href="{% url 'homepage' %}">Home</a></li>
+        <li><a href="{% url 'about'%}">About</a></li>
+        <li class="dropdown"><a href="#" class="active">Solutions</a>
+          <ul class="dropdown-menu">
+            <li><a href="{% url 'IT_support' %}">IT Support & Consultancy</a></li>
+            <li><a href="{% url 'software' %}">Software & Systems</a></li>
+            <li><a href="{% url 'hardware' %}">Hardware & Iot</a></li>
+            <li><a href="{% url 'networking' %}">Networking & Connectivity</a></li>
+            <li><a href="{%url 'cybersec' %}">Cyber & Physical Security</a></li>
+            <li><a href="{% url 'cloud' %}">Cloud Computing</a></li>
+          </ul>
+        </li>
+        <li><a href="{% url 'events' %}">Events</a> </li>
+        <li><a href="{%url 'contact' %}">Contact Us</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+<section class="hero-hard">
+  <div class="overlay fade-in">
+    <h1>NovaSphere IT Solutions Ltd</h1>
+    <h3><span class="highlight">Hardware & IoT</span></h3>
+    <a href="#" class="cta-button">Get Started</a>
+  </div>
+</section>
+
+  <!-- Services Header Section (Separate from modern-services) -->
+  <section class="services-header-section">
+    <div class="services-header-container">
+      <h6 class="services-subtitle">Our Services</h6>
+      <h2 class="services-title">End-to-End IT Solutions</h2>
+      <p class="services-description">Comprehensive technology services to drive your business forward</p>
+    </div>
+  </section>
+
+  <!-- Modern Services Section -->
+  <section class="modern-services">
+    <!-- Background -->
+    <div class="section-bg1">
+      <img src="{% static 'Sphere/images/3502774.jpg' %}" alt="IT Services Background" alt="iot">
+      <div class="bg1-overlay"></div>
+      <!-- Animated Shapes -->
+      <div class="animated-shapes" id="animatedShapes"></div>
+    </div>
+
+    <div class="services-container">
+      <div class="services-text">
+        <h2>Why Choose Our IT Solutions?</h2>
+        <p>From device installations to advanced IoT deployments, we provide complete support across the hardware lifecycle. Our team ensures smooth procurement, installation, integration, and maintenance of enterprise IT hardware and IoT devices, allowing you to stay ahead with smart, connected infrastructure.</p>
+        <p>With IoT and telematics, businesses gain valuable real-time insights into operations, assets, and processes. This enables smarter decision-making, reduced downtime, and improved efficiency across multiple industries—from logistics and healthcare to manufacturing and beyond.</p>
+      </div>
+      <!-- Services Grid -->
+      <div class="services-grid">
+        <!-- Service Card 3 -->
+        <div class="service-card">
+          <div class="card-content">
+            <div class="service-icon">
+              <i class="fas fa-cloud"></i>
+            </div>
+            <h3>IT Hardware</h3>
+            <p>We supply and install reliable, bugdet-friendly  and quality hardware devices.</p>
+          </div>
+        </div>
+
+        <!-- Service Card 4 -->
+        <div class="service-card">
+          <div class="card-content">
+            <div class="service-icon">
+              <i class="fas fa-code"></i>
+            </div>
+            <h3>IoT Solutions</h3>
+            <p>We offer a wide range of IoT solutions including smart devices and sensors for automation and data collection.</p>
+          </div>
+        </div>
+
+        <!-- Service Card 5 -->
+        <div class="service-card">
+          <div class="card-content">
+            <div class="service-icon">
+              <i class="fas fa-network-wired"></i>
+            </div>
+            <h3>Telematics</h3>
+            <p>We also offer telematics solution  such as IoT-enabled fleet and asset tracking solutions.</p>
+          </div>
+        </div>
+
+        <!-- Service Card 6 -->
+        <div class="service-card">
+          <div class="card-content">
+            <div class="service-icon">
+              <i class="fas fa-chalkboard-teacher"></i>
+            </div>
+            <h3>Maintenance & Support</h3>
+            <p>We offer maintenance and support for all the hardware and equipments we offer</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services CTA Section -->
+  <section class="services-cta-section">
+  <div class="services-cta-container">
+  <div class="cta-content">
+    <p>We provide comprehensive solutions to help your business grow and succeed in today's competitive market.</p>
+  </div>
+  <div class="cta-buttons">
+    <a href="#" class="cta-button primary">
+      <i class="fas fa-phone"></i>Contact Us
+    </a>
+    <a href="#" class="cta-button secondary">
+      <i class="fas fa-info-circle"></i>Learn More
+    </a>
+  </div>
+</div>
+</section>
+
+  <footer class="fade-in delay-3">
+    <div class="footer-container">
+      <div class="footer-column">
+        <h3>About Sybyl</h3>
+        <p>Leading provider of enterprise IT solutions helping businesses transform and grow through innovative technology.</p>
+        <div class="social-links">
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-linkedin"></i></a>
+          <a href="#"><i class="fab fa-facebook"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+      
+      <div class="footer-column">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Services</a></li>
+          <li><a href="#">Case Studies</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-column">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="{%url 'homepage%'}">Home</a></li>
+          <li><a href="{%url 'about%'}">About Us</a></li>
+          <li><a href="{%url 'contact'%}">Contact</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-column">
+        <h3>Services</h3>
+        <ul>
+          <li><a href="{% url 'IT_support' %}">IT Support & Consultancy</a></li>
+          <li><a href="{% url 'software' %}">Software & Systems</a></li>
+          <li><a href="{% url 'hardware' %}">Hardware & Iot</a></li>
+          <li><a href="{% url 'networking' %}">Networking & Connectivity</a></li>
+          <li><a href="{%url 'cybersec' %}">Cyber & Physical Security</a></li>
+          <li><a href="{% url 'cloud' %}">Cloud Computing</a></li>
+        </ul>
+      </div>
+    
+    <div class="footer-bottom">
+      <p>&copy; 2025 NovaSphere. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <script src="{%static 'Sphere/js/main.js' %}"></script>
+</body>
+</html>

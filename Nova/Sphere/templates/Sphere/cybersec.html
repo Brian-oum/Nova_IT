@@ -1,0 +1,194 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NovaSphere IT Solutions Ltd</title>
+  <meta name="description" content="NovaSphere IT Solutions Ltd delivers cutting-edge, futuristic IT services across East Africa — from cloud computing, cybersecurity, and networking to digital transformation. We empower businesses through innovation, integrity, and excellence in every solution." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Metal+Mania&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="{% static 'Sphere/css/style.css' %}">
+
+</head>
+<body>
+  <!-- Header with Vertical Dropdown Menu -->
+  <header>
+    <div class="logo"><span>No</span>va<span>Sphere</span></div>
+    <nav>
+      <div class="mobile-menu">
+        <i class="fas fa-bars"></i>
+      </div>
+       <ul>
+        <li><a href="{% url 'homepage' %}">Home</a></li>
+        <li><a href="{% url 'about'%}">About</a></li>
+        <li class="dropdown"><a href="#" class="active">Solutions</a>
+          <ul class="dropdown-menu">
+            <li><a href="{% url 'IT_support' %}">IT Support & Consultancy</a></li>
+            <li><a href="{% url 'software' %}">Software & Systems</a></li>
+            <li><a href="{% url 'hardware' %}">Hardware & Iot</a></li>
+            <li><a href="{% url 'networking' %}">Networking & Connectivity</a></li>
+            <li><a href="{%url 'cybersec' %}">Cyber & Physical Security</a></li>
+            <li><a href="{% url 'cloud' %}">Cloud Computing</a></li>
+          </ul>
+        </li>
+        <li><a href="{% url 'events' %}">Events</a> </li>
+        <li><a href="{%url 'contact' %}">Contact Us</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+<section class="hero-cyber">
+  <div class="overlay fade-in">
+    <h1>NovaSphere IT Solutions Ltd</h1>
+    <h3><span class="highlight">Cyber & Physical Security</span></h3>
+    <a href="{%url 'contact' %}" class="cta-button">Get Started</a>
+  </div>
+</section>
+
+
+  <!-- Services Header Section (Separate from modern-services) -->
+  <section class="services-header-section">
+    <div class="services-header-container">
+      <h6 class="services-subtitle">Our Services</h6>
+      <h2 class="services-title">End-to-End IT Solutions</h2>
+      <p class="services-description">Comprehensive technology services to drive your business forward</p>
+    </div>
+  </section>
+
+  <!-- Modern Services Section -->
+<section class="modern-services">
+  <!-- Background -->
+  <div class="section-bg1">
+    <img src="{% static 'Sphere/images/3065847.jpg' %}" alt="IoT Background">
+    <div class="bg1-overlay"></div>
+    <div class="animated-shapes" id="animatedShapes"></div>
+  </div>
+
+  <!-- Content -->
+  <div class="services-container">
+    <div class="services-text">
+      <h2>Why Choose Our IT Solutions?</h2>
+      <p>Your business demands a holistic approach that blends advanced cybersecurity with robust physical security measures. 
+      We defend your digital ecosystem against evolving threats including malware, phishing, ransomware, and data breaches. 
+      Our services encompass proactive monitoring, next-generation firewalls, vulnerability assessments, and compliance-driven solutions 
+      to ensure sensitive information and systems remain safe and accessible only to authorized personnel.</p>
+
+      <p>We also understand that security extends beyond the digital environment into the physical world. Our solutions 
+      include access control, surveillance systems, IoT-based monitoring, and smart detection technologies that help 
+      organizations secure their premises, equipment, and workforce. By integrating both cyber and physical safeguards, 
+      we provide an end-to-end shield that minimizes risks, strengthens resilience, and gives you peace of mind 
+      knowing your business is protected at every layer.</p>
+    </div>
+
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="card-content">
+          <div class="service-icon"><i class="fas fa-cloud"></i></div>
+          <h3>Cybersecurity Monitoring</h3>
+          <p>We offer real-time threat detection, disaster recovery, and incident response to protect your business from attacks.</p>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="card-content">
+          <div class="service-icon"><i class="fas fa-code"></i></div>
+          <h3>Data Protection</h3>
+          <p>We encrypt and back up your data while ensuring compliance with data protection regulations.</p>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="card-content">
+          <div class="service-icon"><i class="fas fa-network-wired"></i></div>
+          <h3>Physical Security</h3>
+          <p>We offer IP CCTVs, solar-powered surveillance, access control, and IoT-based monitoring systems.</p>
+        </div>
+      </div>
+
+      <div class="service-card">
+        <div class="card-content">
+          <div class="service-icon"><i class="fas fa-chalkboard-teacher"></i></div>
+          <h3>Penetration Testing</h3>
+          <p>We identify and fix vulnerabilities before attackers exploit them.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+  <!-- Services CTA Section -->
+  <section class="services-cta-section">
+  <div class="services-cta-container">
+  <div class="cta-content">
+    <p>We provide comprehensive solutions to help your business grow and succeed in today's competitive market.</p>
+  </div>
+  <div class="cta-buttons">
+    <a href="#" class="cta-button primary">
+      <i class="fas fa-phone"></i>Contact Us
+    </a>
+    <a href="#" class="cta-button secondary">
+      <i class="fas fa-info-circle"></i>Learn More
+    </a>
+  </div>
+</div>
+</section>
+
+  <footer class="fade-in delay-3">
+    <div class="footer-container">
+      <div class="footer-column">
+        <h3>About Sybyl</h3>
+        <p>Leading provider of enterprise IT solutions helping businesses transform and grow through innovative technology.</p>
+        <div class="social-links">
+          <a href="#"><i class="fab fa-twitter"></i></a>
+          <a href="#"><i class="fab fa-linkedin"></i></a>
+          <a href="#"><i class="fab fa-facebook"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+      
+      <div class="footer-column">
+        <h3>Quick Links</h3>
+        <ul>
+          <li><a href="{%url 'homepage%'}">Home</a></li>
+          <li><a href="{%url 'about%'}">About Us</a></li>
+          <li><a href="{%url 'contact'%}">Contact</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-column">
+        <h3>Services</h3>
+        <ul>
+          <li><a href="{% url 'IT_support' %}">IT Support & Consultancy</a></li>
+          <li><a href="{% url 'software' %}">Software & Systems</a></li>
+          <li><a href="{% url 'hardware' %}">Hardware & Iot</a></li>
+          <li><a href="{% url 'networking' %}">Networking & Connectivity</a></li>
+          <li><a href="{%url 'cybersec' %}">Cyber & Physical Security</a></li>
+          <li><a href="{% url 'cloud' %}">Cloud Computing</a></li>
+        </ul>
+      </div>
+      
+      <div class="footer-column">
+        <h3>Contact Us</h3>
+        <ul class="contact-info">
+          <li><i class="fas fa-map-marker-alt"></i> 123 Tech Street, Nairobi, Kenya</li>
+          <li><i class="fas fa-phone"></i> +254 700 123456</li>
+          <li><i class="fas fa-envelope"></i> info@sybyl.com</li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <p>&copy; 2025 NovaSphere. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <script src="{%static 'Sphere/js/main.js' %}"></script>
+</body>
+</html>
