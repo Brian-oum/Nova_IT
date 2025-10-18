@@ -11,6 +11,7 @@ urlpatterns = [
     # Event actions
     path('events/register/<int:event_id>/', views.register_event, name='register_event'),
     path('payment/<int:event_id>/', views.payment_instructions, name='payment_instructions'),
+    path("pay/<int:event_id>/", views.pay_event, name="pay_event"),
 
     # Global verification page (user chooses event)
     path('event/<int:event_id>/verify/', views.verify_payment, name='verify_payment'),
