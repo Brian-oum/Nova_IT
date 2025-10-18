@@ -1,0 +1,33 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Pay for {{ event.name }}</title>
+  <link rel="stylesheet" href="{% static 'Sphere/css/style.css' %}">
+</head>
+<body>
+  <div class="container">
+    <h1>Pay for Event: {{ event.name }}</h1>
+    <p><strong>Date:</strong> {{ event.event_date }}</p>
+    <p><strong>Time:</strong> {{ event.event_time }}</p>
+    <p><strong>Location:</strong> {{ event.location }}</p>
+    <p><strong>Fee:</strong> KSh {{ event.registration_fee }}</p>
+
+    <form method="POST">
+      {% csrf_token %}
+      <label>Enter Safaricom Number (e.g. 600000000 for Sandbox):</label>
+      <input type="text" name="phone" placeholder="Enter phone number" required>
+      <button type="submit" class="btn">Pay with M-Pesa</button>
+    </form>
+
+    {% if messages %}
+      <ul class="messages">
+        {% for message in messages %}
+          <li class="{{ message.tags }}">{{ message }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  </div>
+</body>
+</html>

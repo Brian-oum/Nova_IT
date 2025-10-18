@@ -5,6 +5,9 @@ from django.core.mail import send_mail
 from django.conf import settings
 from .forms import ContactForm, PaymentVerificationForm
 from datetime import date
+from django.shortcuts import render, redirect
+from django.contrib import messages
+from .stk_push import initiate_stk_push
 
 
 # Core pages
@@ -168,3 +171,31 @@ def verify_payment(request, event_id=None):
         "event": event,
         "all_events": all_events,
     })
+
+
+def pay_event(request, event_id):
+    event = Event.objects.get(id=event_id)
+
+    if request.method == "POST":
+        phone = request.POST.get("phone")
+        user_id = request.user.id if request.user.is_authenticated else "Guest"
+
+        if not phone:
+            messages.error(request, "Please enter your phone number.")
+            return redirect("pay_for_event", event_id=event.id)
+
+        response = initiate_stk_push(
+            phone=phone,
+            amount=event.registration_fee,
+            event_name=event.name,
+            user_id=user_id
+        )
+
+        if "error" in response:
+            messages.error(request, "Payment initiation failed. Try again.")
+        else:
+            messages.success(request, "✅ Payment request sent. Check your phone simulator.")
+
+        return redirect("pay_event", event_id=event.id)
+
+    return render(request, "Sphere/pay_event.html", {"event": event})
