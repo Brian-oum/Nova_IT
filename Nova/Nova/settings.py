@@ -6,7 +6,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-24^tcd4&2d81n0&94_l)081&-(h8ick!p7o52b_u9ytt69j1dx'
 DEBUG = True  # Change to False in production
 
-ALLOWED_HOSTS = ['127.0.0.1', 'novasphereitsolutions.co.ke']
+ALLOWED_HOSTS = ['127.0.0.1', 'novasphereitsolutions.co.ke', '192.168.100.26']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
