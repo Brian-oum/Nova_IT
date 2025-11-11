@@ -23,4 +23,7 @@ urlpatterns = [
     path('solutions/networking/', views.networking, name='networking'),
     path('solutions/cybersec/', views.cybersec, name='cybersec'),
     path('solutions/cloud/', views.cloud, name='cloud'),
+    path('solutions/cctv/', views.cctv, name='cctv'),
+    path('solutions/AI/', views.AI, name='AI'),
+    path('solutions/IOT/', views.IOT, name='IOT'),
 ]

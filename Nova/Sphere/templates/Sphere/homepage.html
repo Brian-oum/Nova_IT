@@ -2,287 +2,597 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NovaSphere IT Solutions Ltd</title>
-  <meta name="description" content="NovaSphere IT Solutions Ltd delivers cutting-edge, futuristic IT services across East Africa — from cloud computing, cybersecurity, and networking to digital transformation. We empower businesses through innovation, integrity, and excellence in every solution." />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Metal+Mania&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=My+Soul&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{% block title %}NovaSphere IT Solutions | Enterprise IT Services & Digital Transformation{% endblock %}</title>
 
-  <!-- Your CSS -->
-  <link rel="stylesheet" href="{% static 'Sphere/css/style.css' %}">
+  <meta name="description" content="NovaSphere IT Solutions provides comprehensive enterprise IT services, cybersecurity, cloud solutions, and digital transformation across Africa.">
+  <meta name="keywords" content="IT services, cybersecurity, cloud computing, enterprise software, networking, digital transformation">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="NovaSphere IT Solutions">
+  <link rel="canonical" href="https://novasphereitsolutions.co.ke/">
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <!-- Box Icons-->
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="{% static 'Sphere/css/style1.css' %}" />
+  <link rel="icon" href="{% static 'Sphere/images/logo.jpg' %}" type="image/x-icon" />
 </head>
 <body>
-  <!-- Header with Vertical Dropdown Menu -->
-  <header>
-    <div class="logo">NovaSphere</div>
-    <nav>
-      <div class="mobile-menu">
-        <i class="fas fa-bars"></i>
+
+
+  <!-- 🔹 Subheader -->
+  <div class="subheader">
+    <div class="container subheader-content">
+      <div class="left-info">
+        <span>
+          <i class='bx bx-phone'></i> 
+          <a href="tel:+254714937625">+254 714 937 625</a> |
+          <a href="tel:+254722339434">+254 718 040 905</a>
+        </span>
+        <span>
+          <i class='bx bx-envelope'></i> 
+          <a href="mailto:info@novasphereitsolutions.co.ke">info@novasphereitsolutions.co.ke</a>
+        </span>
+        <span>
+          <i class='bx bx-map'></i> 
+          <a href="https://www.google.com/maps?q=Nairobi,Kenya" target="_blank">Nairobi, Kenya</a>
+        </span>
       </div>
-      <ul>
-        <li><a href="{% url 'homepage' %}" class="active">Home</a></li>
-        <li><a href="{% url 'about'%}">About</a></li>
-        <li class="dropdown">
-         <a href="#">Solutions</a>
-          <ul class="dropdown-menu">
-            <li><a href="{% url 'IT_support' %}">IT Support & Consultancy</a></li>
-            <li><a href="{% url 'software' %}">Software & Systems</a></li>
-            <li><a href="{% url 'hardware' %}">Hardware & Iot</a></li>
-            <li><a href="{% url 'networking' %}">Networking & Connectivity</a></li>
-            <li><a href="{%url 'cybersec' %}">Cyber & Physical Security</a></li>
-            <li><a href="{% url 'cloud' %}">Cloud Computing</a></li>
-          </ul>
-        </li>
-        <li><a href="{% url 'events' %}">Events</a> </li>
-        <li><a href="{%url 'contact' %}">Contact Us</a></li>
-      </ul>
-    </nav>
+      <div class="right-socials">
+        <a href="#"><i class='bx bxl-facebook'></i></a>
+        <a href="#"><i class='bx bxl-twitter'></i></a>
+        <a href="#"><i class='bx bxl-instagram'></i></a>
+        <a href="#"><i class='bx bxl-linkedin'></i></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 🔹 Main Header -->
+  <header class="main-header">
+    <div class="container header-content">
+      <div class="logo">
+        <a href="{% url 'homepage' %}">
+          <img src="{% static 'Sphere/images/logo.jpg' %}" alt="NovaSphere IT Solutions">
+          <span class="logo-text">NovaSphere</span>
+        </a>
+      </div>
+      <!-- 🔹 Mobile Hamburger Menu -->
+      <div class="menu-toggle" id="menu-toggle">
+        <i class='bx bx-menu'></i>
+      </div>
+
+      <!-- 🔹 Navigation Menu -->
+      <nav class="navbar" id="navbar">
+        <ul>
+          <li><a href="{% url 'homepage' %}">Home</a></li>
+          <li><a href="{% url 'about' %}">About Us</a></li>
+          <li class="dropdown">
+            <a href="#">Solutions<i class='bx bx-chevron-down'></i></a>
+            <div class="mega-menu">
+              <div class="mega-column">
+                <h4>Our Solutions</h4>
+                  <a href="{% url 'IT_support' %}">ICT Consultancy</a>
+                  <a href="{% url 'software' %}">Software & Systems</a>
+                  <a href="{% url 'hardware' %}">Hardware Installations</a>
+                  <a href="{% url 'networking' %}">Networking & Connectivity</a>
+                  <a href="{%url 'cybersec' %}">CyberSecurity</a>
+                  <a href="{% url 'cloud' %}">Cloud Integration</a>
+                  <a href="{% url 'cctv' %}">CCTV Installations</a>
+                  <a href="{% url 'AI' %}">AI & Machine Learning Development</a>
+                  <a href="{% url 'IOT' %}">IoT Integration</a>
+              </div>
+            </div>
+          </li>
+          <li><a href="{% url 'events' %}">ICT Events</a></li>
+          <li><a href="{% url 'contact' %}">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
   </header>
+  <!-- Main Content Block -->
+  <section id="hero-slider" class="hero-slider">
+    <div class="slider__wrapper">
+      
+      <!-- Slide 1 -->
+      <div class="slider__slide active" data-index="0">
+        <div class="slider__overlay"></div>
+        <img src="{% static 'Sphere/images/server-racks-computer-network-security-server-room-data-center-dark-blue-generative-ai.webp' %}" 
+             alt="Enterprise IT Solutions & Digital Transformation" class="slider__bg">
+        <div class="slider__content container">
+          <h1 class="slider__title">
+            Enterprise <span class="slider__highlight">IT Solutions</span> & Digital Transformation
+          </h1>
+          <p class="slider__subtitle">
+            Empowering businesses with comprehensive IT services, cybersecurity, and digital innovation for sustainable growth and operational excellence
+          </p>
+          <ul class="slider__points">
+            <li>Strategic IT consulting and digital transformation</li>
+            <li>Enterprise-grade cybersecurity solutions</li>
+            <li>Custom software development and system integration</li>
+          </ul>
+          <div class="slider__cta">
+            <a href="{% url 'about' %}" class="btn btn--primary">Learn More</a>
+            <a href="{% url 'contact' %}" class="btn btn--outline">Contact Us</a>
+          </div>
+        </div>
+      </div>
 
+      <!-- Slide 2 -->
+      <div class="slider__slide" data-index="1">
+        <div class="slider__overlay"></div>
+        <img src="{% static 'Sphere/images/cybersecurity-shield-with-lock-circuit-board.webp' %}" 
+             alt="Cybersecurity & Data Protection" class="slider__bg">
+        <div class="slider__content container">
+          <h1 class="slider__title">
+            Advanced <span class="slider__highlight">Cybersecurity</span> & Data Protection
+          </h1>
+          <p class="slider__subtitle">
+            Protect your digital assets with enterprise-grade security solutions and proactive threat management
+          </p>
+          <ul class="slider__points">
+            <li>Comprehensive risk assessment and vulnerability management</li>
+            <li>24/7 security monitoring and incident response</li>
+            <li>Regulatory compliance and data protection</li>
+          </ul>
+          <div class="slider__cta">
+            <a href="{% url 'cybersec' %}" class="btn btn--primary">Security Solutions</a>
+            <a href="{% url 'contact' %}" class="btn btn--outline">Security Audit</a>
+          </div>
+        </div>
+      </div>
 
-<!-- Hero Section -->
-<section class="hero">
-  <!-- Slideshow Background with img tags -->
-  <div class="hero-slideshow">
-    <!-- Slide 1 -->
-    <div class="slide active">
-      <img src="{% static 'Sphere/images/server-racks-computer-network-security-server-room-data-center-dark-blue-generative-ai.jpg' %}" alt="IT Infrastructure" class="slide-img">
-      <div class="slide-content">
-        <h1>Enterprise IT Infrastructure</h1>
-        <p class="slide-description">Building robust, scalable IT foundations for businesses of all sizes with cutting-edge technology solutions.</p>
-        <a href="{%url 'contact' %}" class="slide-cta-button">Get Started</a>
+      <!-- Slide 3 -->
+      <div class="slider__slide" data-index="2">
+        <div class="slider__overlay"></div>
+        <img src="{% static 'Sphere/images/SL-101820-36860-11.webp' %}" 
+             alt="Cloud Computing & Infrastructure" 
+             class="slider__bg">
+        <div class="slider__content container">
+          <h1 class="slider__title">
+            Scalable <span class="slider__highlight">Cloud Solutions</span>
+          </h1>
+          <p class="slider__subtitle">
+            Transform your IT infrastructure with secure, scalable cloud services and seamless migration strategies
+          </p>
+          <ul class="slider__points">
+            <li>Hybrid and multi-cloud architecture design</li>
+            <li>Cloud migration and optimization services</li>
+            <li>Cost-effective cloud management and monitoring</li>
+          </ul>
+          <div class="slider__cta">
+            <a href="{% url 'cloud' %}" class="btn btn--primary">Cloud Services</a>
+            <a href="{% url 'contact' %}" class="btn btn--outline">Contact Us</a>
+          </div>
+        </div>
       </div>
-    </div>
-    
-    <!-- Slide 2 -->
-    <div class="slide">
-      <img src="{% static 'Sphere/images/saas-concept-collage.jpg' %}" alt="Digital Transformation" class="slide-img">
-      <div class="slide-content">
-        <h1>Digital Transformation</h1>
-        <p class="slide-description">Modernize your business operations with innovative digital solutions that drive growth and efficiency.</p>
-        <a href="{%url 'contact' %}" class="slide-cta-button">Contact</a>
+
+      <!-- Slide 4 -->
+      <div class="slider__slide" data-index="3">
+        <div class="slider__overlay"></div>
+        <img src="{% static 'Sphere/images/v627-aew-47-technologybackground.webp' %}" 
+             alt="Custom Software Development" class="slider__bg">
+        <div class="slider__content container">
+          <h1 class="slider__title">
+            Custom <span class="slider__highlight">Software Development</span>
+          </h1>
+          <p class="slider__subtitle">
+            Bespoke software solutions tailored to your business needs, driving efficiency and innovation
+          </p>
+          <ul class="slider__points">
+            <li>Enterprise application development</li>
+            <li>Web and mobile application solutions</li>
+            <li>Legacy system modernization</li>
+          </ul>
+          <div class="slider__cta">
+            <a href="{% url 'software' %}" class="btn btn--primary">Our Portfolio</a>
+            <a href="{% url 'contact' %}" class="btn btn--outline">Start Project</a>
+          </div>
+        </div>
       </div>
-    </div>
-    
-    <!-- Slide 3 -->
-    <div class="slide">
-      <img src="{% static 'Sphere/images/cctv-security-camera.jpg' %}" alt="Security Solutions" class="slide-img">
-      <div class="slide-content">
-        <h1>Security & Surveillance</h1>
-        <p class="slide-description">Comprehensive security solutions to protect your assets, data, and business operations 24/7.</p>
-        <a href="{%url 'cybersec' %}" class="slide-cta-button">Secure Your Business</a>
-      </div>
-    </div>
-    <!-- slide 4 -->
-    <div class="slide">
-      <img src="{% static 'Sphere/images/modern-bathroom-with-smart-home-technology.jpg' %}" alt="IoT Solutions" class="slide-img">
-      <div class="slide-content">
-        <h1>IoT & Smart Solutions</h1>
-        <p class="slide-description">Connect and automate your business with intelligent IoT systems for enhanced efficiency and data-driven insights.</p>
-        <a href="iot.html" class="slide-cta-button">Discover IoT</a>
-      </div>
+
+      <!-- Slide 5 -->
+      <div class="slider__slide" data-index="4">
+  <div class="slider__overlay"></div>
+  <img src="{% static 'Sphere/images/network-switch-with-cables (1).webp' %}" 
+       alt="Networking Solutions" class="slider__bg">
+  <div class="slider__content container">
+    <h1 class="slider__title">
+      Reliable <span class="slider__highlight">Networking Solutions</span>
+    </h1>
+    <p class="slider__subtitle">
+      We design, implement, and manage secure and efficient network systems to keep your business connected and productive.
+    </p>
+    <ul class="slider__points">
+      <li>Structured cabling and network design</li>
+      <li>LAN, WAN, and wireless setup and optimization</li>
+      <li>Network security and performance monitoring</li>
+    </ul>
+    <div class="slider__cta">
+      <a href="{% url 'networking' %}" class="btn btn--primary">Explore Solutions</a>
+      <a href="{% url 'contact' %}" class="btn btn--outline">Get a Quote</a>
     </div>
   </div>
-  
-  <!-- Slideshow Controls -->
-  <div class="slide-controls">
-    <button class="slide-prev">‹</button>
-    <div class="slide-dots">
-      <span class="dot active" data-slide="0"></span>
-      <span class="dot" data-slide="1"></span>
-      <span class="dot" data-slide="2"></span>
-      <span class="dot" data-slide="3"></span>
+</div>
+
+
     </div>
-    <button class="slide-next">›</button>
-  </div>
-</section>
-  <!-- Info Section -->
-  <section class="info">
-    <div class="text">
-      <h2 class="typing-text">Optimise Your Business Process & Gain an Edge in the Market</h2>
-      <p class="fade-in delay-1">Setting the right foundation is critical to spurring business growth. Investing in enterprise technology for your business processes is thus a core strategy for many organisations.</p>
-    </div>
-    <div class="stats">
-      <div class="fade-in delay-1">
-        <strong>10+</strong><br>Projects Delivered
+
+    <!-- Dots Navigation -->
+    <div class="slider__dots"></div>
+  </section>
+
+  <section id="about-novasphere" class="about-section">
+    <div class="bg-overlay"></div>
+    <div class="animated-bg"></div>
+
+    <div class="container about-grid">
+      <!-- About Text -->
+      <div class="about-text" data-animate="fade-up">
+        <h2 class="about-title">
+          About <span class="highlight">NovaSphere IT Solutions</span>
+        </h2>
+        <p class="about-description">
+          NovaSphere IT Solutions is a leading provider of comprehensive enterprise IT services 
+          and digital transformation solutions across East Africa. We specialize in delivering 
+          strategic IT consulting, cutting-edge technology implementation, and ongoing support 
+          services that empower businesses to thrive in the digital age.
+        </p>
+        <p class="about-description">
+          Our team of certified professionals brings decades of combined experience in enterprise 
+          architecture, software development, cybersecurity, and cloud computing. We partner with 
+          organizations to align technology with business objectives, driving efficiency, innovation, 
+          and sustainable growth.
+        </p>
+        <p class="about-description">
+          From initial technology assessment to full-scale digital transformation, we provide 
+          end-to-end solutions that include custom software development, infrastructure optimization, 
+          cybersecurity protection, and strategic IT planning tailored to your unique business needs.
+        </p>
       </div>
-      <div class="fade-in delay-2">
-        <strong>5+</strong><br>Enterprise Partners
-      </div>
-      <div class="fade-in delay-1">
-        <strong>10+</strong><br>Industries
-      </div>
-      <div class="fade-in delay-2">
-        <strong>5+</strong><br>Project Countries
+
+      <!-- Portfolio Cards -->
+      <div class="features-grid">
+        <div class="feature-card" data-animate="fade-up">
+          <i class="bx bx-network-chart feature-icon"></i>
+          <h3>IT Infrastructure</h3>
+          <p>
+            Comprehensive network design, implementation, and management services for robust, 
+            scalable enterprise infrastructure.
+          </p>
+        </div>
+
+        <div class="feature-card" data-animate="fade-up">
+          <i class="bx bx-shield-alt feature-icon"></i>
+          <h3>Cybersecurity</h3>
+          <p>
+            Enterprise-grade security solutions including threat detection, vulnerability management, 
+            and compliance assurance.
+          </p>
+        </div>
+
+        <div class="feature-card" data-animate="fade-up">
+          <i class="bx bx-cloud feature-icon"></i>
+          <h3>Cloud Services</h3>
+          <p>
+            End-to-end cloud solutions including migration, management, and optimization across 
+            public, private, and hybrid environments.
+          </p>
+        </div>
+
+        <div class="feature-card" data-animate="fade-up">
+          <i class="bx bx-code-alt feature-icon"></i>
+          <h3>Software Development</h3>
+          <p>
+            Custom enterprise applications, web solutions, and mobile apps built with modern 
+            technologies and best practices.
+          </p>
+        </div>
+
+        <div class="feature-card" data-animate="fade-up">
+          <i class="bx bx-cog feature-icon"></i>
+          <h3>Managed IT Services</h3>
+          <p>
+            Proactive monitoring, maintenance, and support services to ensure your IT 
+            infrastructure operates at peak performance.
+          </p>
+        </div>
+
+        <div class="feature-card" data-animate="fade-up">
+          <i class="bx bx-brain feature-icon"></i>
+          <h3>IT Consulting</h3>
+          <p>
+            Strategic technology advisory services to help you make informed decisions and 
+            maximize your IT investments.
+          </p>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Company Overview Section -->
-<section class="company-overview fade-in delay-1">
-  <div class="overview-container">
-    
-    <!-- LEFT SIDE -->
-    <div class="overview-left">
-      <h2 class="overview-title">Company Overview</h2>
-      <p>
-        At <strong>NovaSphere IT Solutions Ltd</strong>, we empower businesses through next-generation
-        technology. Our solutions blend innovation, strategy, and precision—covering areas such as 
-        <strong>cloud computing, cybersecurity, software development, networking, and IoT integration</strong>.
-      </p>
-      <p>
-        We are dedicated to helping enterprises achieve digital transformation with intelligent systems
-        that drive efficiency, reliability, and sustainable growth across East Africa and beyond.
-      </p>
-      <a href="{% url 'about' %}" class="overview-btn">Learn More</a>
-    </div>
+  <section id="how-we-do-it" class="process-section">
+    <div class="process-overlay"></div>
 
-    <!-- RIGHT SIDE -->
-    <div class="overview-right">
-      <h3 class="choose-title">Why Choose Us</h3>
-      <ul class="choose-list">
-        <li><i class="fas fa-check-circle"></i> Proven track record of successful enterprise deployments</li>
-        <li><i class="fas fa-check-circle"></i> Experienced, certified technology professionals</li>
-        <li><i class="fas fa-check-circle"></i> Client-focused innovation and customization</li>
-        <li><i class="fas fa-check-circle"></i> Reliable support and service excellence</li>
-        <li><i class="fas fa-check-circle"></i> Scalable, secure, and future-ready IT solutions</li>
-      </ul>
-    </div>
-  </div>
-</section>
-  <section class="services">
-  <div>
-  <p class="intro fade-in">We deliver the best ICT enterprise services available every Region. Our solutions are crafted to suit your unique challenges to ensure you gain competitive advantage.</p>
-  <div class="grid">
-    <!-- Software & Systems Solutions -->
-    <div class="card security fade-in delay-1">
-      <h3><i class="fas fa-laptop-code icon"></i> Software & Systems</h3>
-      <p>Custom web & software development, and system development.</p>
-      <div class="card-footer">
-         <a href="{%url 'software'%}" class="read-more-link">
-           Read More <i class="fas fa-arrow-right"></i>
-        </a>
+    <div class="container process-wrapper">
+      <div class="process-header" data-animate="fade-up">
+        <h2 class="process-title">
+          Our <span class="highlight">Methodology</span>
+        </h2>
+        <p class="process-subtitle">
+          We follow a proven, collaborative approach to deliver technology solutions that drive 
+          measurable business outcomes and sustainable digital transformation.
+        </p>
       </div>
-    </div>
 
-    <!-- IoT, Networking & Connectivity -->
-    <div class="card business-intel fade-in delay-2">
-      <h3><i class="fas fa-network-wired icon"></i> IoT & Hardware</h3>
-      <p>IoT solutions, telematics, fleet and hardware solutions.</p>
-      <div class="card-footer">
-         <a href="{%url 'hardware'%}" class="read-more-link">
-           Read More <i class="fas fa-arrow-right"></i>
-        </a>
-      </div>
-    </div>
+      <div class="process-grid">
+        <!-- Step 1 -->
+        <div class="process-card" data-animate="fade-up">
+          <div class="process-icon-box">
+            <i class="bx bx-search-alt process-icon"></i>
+          </div>
+          <h3 class="process-step-title">1. Discover & Analyze</h3>
+          <p class="process-step-desc">
+            We begin with comprehensive discovery sessions to understand your business objectives, 
+            technical requirements, and strategic goals through detailed analysis and assessment.
+          </p>
+          <img src="{% static 'Sphere/images/elevated-view-pen-notebook-wooden-desk.webp' %}"
+               alt="IT consulting and business analysis" class="process-img">
+        </div>
 
-    <!-- Hardware & Cybersecurity -->
-    <div class="card banking fade-in delay-1">
-      <h3><i class="fas fa-shield-alt icon"></i> Cyber & Physical security</h3>
-      <p>cybersecurity, digital, data and Physicalsecurity solutions.</p>
-      <div class="card-footer">
-         <a href="{% url 'cybersec'%}" class="read-more-link">
-           Read More <i class="fas fa-arrow-right"></i>
-        </a>
-      </div>
-    </div>
-  </div>
+        <!-- Step 2 -->
+        <div class="process-card" data-animate="fade-up" data-delay="200">
+          <div class="process-icon-box">
+            <i class="bx bx-arch process-icon"></i>
+          </div>
+          <h3 class="process-step-title">2. Design & Plan</h3>
+          <p class="process-step-desc">
+            Our architects design robust technology solutions and create detailed implementation 
+            plans that align with your business strategy and technical requirements.
+          </p>
+          <img src="{% static 'Sphere/images/digital-tablet-stylus-pen-laptop-desktop-close-up.webp' %}"
+               alt="Technology architecture and solution design" class="process-img">
+        </div>
 
-  <p class="discover fade-in delay-3">Discover & Learn. Explore what we are up to at Sybyl. Keeping you ahead
-     of the curve with the latest in Enterprise Information Technology solutions, our industry and our community service.</p>
-</section>
-
-
-<section class="partners">
-
-  <!-- ===== TEXT SECTION (FULLSCREEN IMAGE BACKGROUND) ===== -->
-  <div class="partners-hero">
-    <div class="partners-content">
-      <h2 class="partners-title">Our Partners</h2>
-      <p>
-        At NovaSphere, we carefully engage partners based on shared values, industry expertise, 
-        and the ability to provide innovative solutions that address the evolving needs of our clients.
-        Through these partnerships, we offer high-quality ICT solutions, industry-specific solutions, 
-        secure payment processing, and cutting-edge software development. These collaborations 
-        strengthen our service offerings, allowing us to deliver seamless, reliable, and scalable 
-        solutions that empower our clients to achieve greater success and operational efficiency.
-      </p>
-    </div>
-  </div>
-
-  <!-- ===== SLIDESHOW SECTION ===== -->
-  <div class="partners-slideshow">
-    <div class="partners-slide active">
-      <img src="{% static 'Sphere/images/Dfl.jpg' %}" alt="Partner 1">
-    </div>
-    <div class="partners-slide">
-      <img src="{% static 'Sphere/images/horizon.jpg' %}" alt="Partner 2">
-    </div>
-    <div class="partners-slide">
-      <img src="{% static 'Sphere/images/geoken.png' %}" alt="Partner 3">
-    </div>
-    <div class="partners-slide">
-      <img src="{% static 'Sphere/images/NIKE NEW LOGO_page-0001.jpg' %}" alt="Partner 4">
-    </div>
-  </div>
-
-</section>
-
-
-
-  <footer class="fade-in delay-3">
-    <div class="footer-container">
-      <div class="footer-column">
-        <h3>About NovaSphere</h3>
-        <p>Leading provider of enterprise IT solutions helping businesses transform and grow through innovative technology.</p>
-        <div class="social-links">
-          <a href="#"><i class="fab fa-twitter"></i></a>
-          <a href="#"><i class="fab fa-linkedin"></i></a>
-          <a href="#"><i class="fab fa-facebook"></i></a>
-          <a href="#"><i class="fab fa-instagram"></i></a>
+        <!-- Step 3 -->
+        <div class="process-card" data-animate="fade-up" data-delay="400">
+          <div class="process-icon-box">
+            <i class="bx bx-cog process-icon"></i>
+          </div>
+          <h3 class="process-step-title">3. Implement & Integrate</h3>
+          <p class="process-step-desc">
+            We execute the planned solution with precision, ensuring seamless integration with 
+            existing systems and minimal disruption to your business operations.
+          </p>
+          <img src="{% static 'Sphere/images/Blog-Secrets-to-Building-a-Career-in-Cybersecurity-in-2023-1.webp' %}"
+               alt="IT implementation and system integration" class="process-img">
         </div>
       </div>
-      
-      <div class="footer-column">
-        <h3>Quick Links</h3>
-        <ul>
-          <li><a href="{%url 'homepage%'}">Home</a></li>
-          <li><a href="{%url 'about%'}">About Us</a></li>
-          <li><a href="{%url 'contact'%}">Contact</a></li>
-        </ul>
+    </div>
+  </section>
+
+  <section id="why-horizon" class="why-section">
+  <div class="why-overlay"></div>
+  <div class="why-animated-bg"></div>
+
+  <div class="container why-container">
+    <div class="why-header" data-animate="fade-up">
+      <h2 class="why-title">Why Choose <span class="highlight">NovaSphere IT Solutions</span></h2>
+      <p class="why-subtitle">
+        We deliver smart, secure, and innovative IT solutions that empower businesses to stay connected, efficient, and future-ready.
+      </p>
+    </div>
+
+    <div class="why-grid">
+
+      <!-- Card 1 -->
+      <div class="why-card" data-animate="fade-up">
+        <div class="why-icon">
+          <!-- Circular pulse animation -->
+          <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="32" cy="32" r="26" stroke="#007bff" stroke-width="3" opacity="0.5">
+              <animate attributeName="r" values="26;30;26" dur="2.5s" repeatCount="indefinite" />
+            </circle>
+            <path d="M20 33L28 41L44 25" stroke="#FF6B35" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+              <animate attributeName="stroke-dasharray" from="0,50" to="50,0" dur="2s" fill="freeze" repeatCount="indefinite" />
+            </path>
+          </svg>
+        </div>
+        <h3>Trusted Reliability</h3>
+        <p>Our IT infrastructure solutions guarantee 99.9% uptime, ensuring your systems and networks run smoothly around the clock.</p>
       </div>
-      
-      <div class="footer-column">
-        <h3>Services</h3>
-        <ul>
-          <li><a href="{% url 'IT_support' %}">IT Support & Consultancy</a></li>
-          <li><a href="{% url 'software' %}">Software & Systems</a></li>
-          <li><a href="{% url 'hardware' %}">Hardware & Iot</a></li>
-          <li><a href="{% url 'networking' %}">Networking & Connectivity</a></li>
-          <li><a href="{%url 'cybersec' %}">Cyber & Physical Security</a></li>
-          <li><a href="{% url 'cloud' %}">Cloud Computing</a></li>
-        </ul>
+
+      <!-- Card 2 -->
+      <div class="why-card" data-animate="fade-up" data-delay="200">
+        <div class="why-icon">
+          <!-- Rotating cube effect -->
+          <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+            <rect x="12" y="12" width="40" height="40" stroke="#007bff" stroke-width="3" fill="none">
+              <animateTransform attributeName="transform" type="rotate" from="0 32 32" to="360 32 32" dur="6s" repeatCount="indefinite" />
+            </rect>
+            <circle cx="32" cy="32" r="6" fill="#FF6B35">
+              <animate attributeName="r" values="6;8;6" dur="2s" repeatCount="indefinite" />
+            </circle>
+          </svg>
+        </div>
+        <h3>Innovative Technology</h3>
+        <p>We leverage cloud computing, automation, and AI-driven tools to deliver next-generation IT solutions tailored to your business.</p>
       </div>
-      
-      <div class="footer-column">
-        <h3>Contact Us</h3>
-        <ul class="contact-info">
-          <li><i class="fas fa-phone"></i> +254 714 937 625</li>
-          <li><i class="fas fa-envelope"></i> info@novasphereitsolutions.co.ke</li>
-        </ul>
+
+      <!-- Card 3 -->
+      <div class="why-card" data-animate="fade-up" data-delay="400">
+        <div class="why-icon">
+          <!-- Shield with pulsing center -->
+          <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+            <path d="M32 6L10 16V32C10 48 22 56 32 58C42 56 54 48 54 32V16L32 6Z"
+              stroke="#007bff" stroke-width="3" fill="none">
+              <animate attributeName="stroke-dasharray" from="0,300" to="300,0" dur="3s" repeatCount="indefinite" />
+            </path>
+            <circle cx="32" cy="32" r="6" fill="#FF6B35">
+              <animate attributeName="r" values="6;9;6" dur="2s" repeatCount="indefinite" />
+            </circle>
+          </svg>
+        </div>
+        <h3>Security & Scalability</h3>
+        <p>We implement top-tier cybersecurity frameworks and scalable IT infrastructure designed for growing organizations.</p>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="why-card" data-animate="fade-up" data-delay="600">
+        <div class="why-icon">
+          <!-- Custom dynamic triangle animation -->
+          <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+            <polygon points="32,8 56,56 8,56" stroke="#007bff" stroke-width="3" fill="none">
+              <animate attributeName="stroke-dashoffset" from="150" to="0" dur="3s" repeatCount="indefinite" />
+            </polygon>
+            <circle cx="32" cy="40" r="4" fill="#FF6B35">
+              <animateTransform attributeName="transform" type="translate" values="0 0; 0 -4; 0 0" dur="1.8s" repeatCount="indefinite" />
+            </circle>
+          </svg>
+        </div>
+        <h3>Tailored IT Solutions</h3>
+        <p>We customize every IT project — from networking to enterprise software — to fit your business objectives and workflow.</p>
+      </div>
+
+      <!-- Card 5 -->
+      <div class="why-card" data-animate="fade-up" data-delay="800">
+        <div class="why-icon">
+          <!-- Data flow animation -->
+          <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+            <path d="M10 32H54" stroke="#007bff" stroke-width="3" stroke-linecap="round">
+              <animate attributeName="stroke-dasharray" values="0,100;100,0" dur="2.5s" repeatCount="indefinite" />
+            </path>
+            <circle cx="32" cy="32" r="8" stroke="#FF6B35" stroke-width="3" fill="none">
+              <animate attributeName="r" values="8;10;8" dur="1.8s" repeatCount="indefinite" />
+            </circle>
+          </svg>
+        </div>
+        <h3>Insightful Data Management</h3>
+        <p>Turn data into action with advanced analytics dashboards, cloud storage, and reporting tools that drive informed decisions.</p>
+      </div>
+
+      <!-- Card 6 -->
+      <div class="why-card" data-animate="fade-up" data-delay="1000">
+        <div class="why-icon">
+          <!-- Connected nodes animation -->
+          <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="16" cy="32" r="5" fill="#007bff">
+              <animate attributeName="r" values="5;7;5" dur="1.6s" repeatCount="indefinite" />
+            </circle>
+            <circle cx="48" cy="32" r="5" fill="#FF6B35">
+              <animate attributeName="r" values="5;7;5" dur="1.6s" begin="0.8s" repeatCount="indefinite" />
+            </circle>
+            <line x1="16" y1="32" x2="48" y2="32" stroke="#007bff" stroke-width="3">
+              <animate attributeName="stroke-dasharray" values="0,70;70,0" dur="3s" repeatCount="indefinite" />
+            </line>
+          </svg>
+        </div>
+        <h3>24/7 IT Support</h3>
+        <p>Our expert technicians are available around the clock to resolve issues, manage systems, and ensure business continuity.</p>
       </div>
     </div>
-    
+  </div>
+</section>
+
+
+  <footer id="footer" class="footer-section">
+    <div class="footer-overlay"></div>
+    <div class="footer-glow"></div>
+
+    <div class="container footer-container">
+      <div class="footer-grid">
+        
+        <!-- Column 1: Logo & About -->
+        <div class="footer-about" data-animate="fade-up">
+          <h2 class="footer-logo">
+            <span class="highlight">NovaSphere</span> IT Solutions
+          </h2>
+          <p class="footer-desc">
+            Your trusted partner for comprehensive enterprise IT services, digital transformation, 
+            and technology innovation. We deliver solutions that drive business growth and operational excellence.
+          </p>
+          <div class="footer-social">
+            <a href="#" class="social-link"><i class="bx bxl-linkedin"></i></a>
+            <a href="#" class="social-link"><i class="bx bxl-twitter"></i></a>
+            <a href="#" class="social-link"><i class="bx bxl-facebook"></i></a>
+          </div>
+        </div>
+
+        <!-- Column 2: Quick Links -->
+        <div class="footer-links" data-animate="fade-up" data-delay="200">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="{% url 'homepage' %}">Home</a></li>
+            <li><a href="{% url 'about' %}">About Us</a></li>
+            <li><a href="#how-we-do-it">Our Methodology</a></li>
+            <li><a href="#why-novasphere">Why Choose Us</a></li>
+            <li><a href="{% url 'contact' %}">Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 3: Services -->
+        <div class="footer-links" data-animate="fade-up" data-delay="400">
+          <h3>Our Services</h3>
+          <ul>
+            <li><a href="{% url 'IT_support' %}">ICT Consultancy</a></li>
+            <li><a href="{% url 'software' %}">Software & Systems</a></li>
+            <li><a href="{% url 'hardware' %}">Hardware Installations</a></li>
+            <li><a href="{% url 'networking' %}">Networking & Connectivity</a></li>
+            <li><a href="{%url 'cybersec' %}">CyberSecurity</a></li>
+            <li><a href="{% url 'cloud' %}">Cloud Integration</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 4: Contact -->
+        <div class="footer-contact" data-animate="fade-up" data-delay="600">
+          <h3>Contact Info</h3>
+          <p><i class="bx bx-map"></i> Mpaka Plaza, Mpaka Road, Nairobi, Kenya</p>
+          <p><i class="bx bx-phone"></i> +254 714 937 625</p>
+          <p><i class="bx bx-phone"></i> +254 718 040 905</p>
+          <p><i class="bx bx-envelope"></i> info@novasphereitsolutions.co.ke</p>
+          <p><i class="bx bx-time-five"></i> Mon - Fri: 8:00am – 6:00pm</p>
+          <p><i class="bx bx-time-five"></i> Sat: 9:00am – 1:00pm</p>
+        </div>
+
+      </div>
+    </div>
+
     <div class="footer-bottom">
-      <p>&copy; 2025 NovaSphere. All Rights Reserved.</p>
+      <p>© {% now "Y" %} NovaSphere IT Solutions. All Rights Reserved.</p>
     </div>
   </footer>
-  
 
-  <script src="{%static 'Sphere/js/main.js' %}"></script>
+  <!-- Floating WhatsApp Icon (Bottom Left) -->
+  <a href="https://wa.me/254714937625" target="_blank" 
+     id="whatsapp-float" 
+     class="floating-icon whatsapp">
+    <i class='bx bxl-whatsapp'></i>
+  </a>
+
+
+
+  <!-- JavaScript -->
+  <script src="{% static 'Sphere/js/main1.js' %}"></script>
+  
+  <!-- Django-specific JavaScript -->
+  <script>
+    // Django CSRF token setup for AJAX
+    const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+    
+    // Django static URL
+    const staticUrl = "{% static '' %}";
+    
+    // Django URLs (you can add more as needed)
+    const urls = {
+      contact: "{% url 'contact' %}",
+      homepage: "{% url 'homepage' %}"
+    };
+  </script>
 </body>
 </html>

@@ -2,223 +2,360 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>About Us - NovaSphere IT Solutions Ltd</title>
-  <meta name="description" content="NovaSphere IT Solutions Ltd delivers cutting-edge, futuristic IT services across East Africa — from cloud computing, cybersecurity, and networking to digital transformation. We empower businesses through innovation, integrity, and excellence in every solution." />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Metal+Mania&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <link rel="stylesheet" href="{% static 'Sphere/css/style.css' %}">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{% block title %}NovaSphere IT Solutions | Enterprise IT Services & Digital Transformation{% endblock %}</title>
+
+  <meta name="description" content="NovaSphere IT Solutions provides comprehensive enterprise IT services, cybersecurity, cloud solutions, and digital transformation across Africa.">
+  <meta name="keywords" content="IT services, cybersecurity, cloud computing, enterprise software, networking, digital transformation">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="NovaSphere IT Solutions">
+  <link rel="canonical" href="https://novasphereitsolutions.co.ke/">
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <!-- Box Icons-->
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="{% static 'Sphere/css/style1.css' %}" />
+  <link rel="icon" href="{% static 'Sphere/images/logo.jpg' %}" type="image/x-icon" />
 </head>
 <body>
-  <!-- Header with Vertical Dropdown Menu -->
-  <header>
-    <div class="logo"><span>No</span>va<span>Sphere</span></div>
-    <nav>
-      <div class="mobile-menu">
-        <i class="fas fa-bars"></i>
+
+
+  <!-- 🔹 Subheader -->
+  <div class="subheader">
+    <div class="container subheader-content">
+      <div class="left-info">
+        <span>
+          <i class='bx bx-phone'></i> 
+          <a href="tel:+254714937625">+254 714 937 625</a> |
+          <a href="tel:+254718 040 905">+254 718 040 905</a>
+        </span>
+        <span>
+          <i class='bx bx-envelope'></i> 
+          <a href="mailto:info@novasphereitsolutions.co.ke">info@novasphereitsolutions.co.ke</a>
+        </span>
+        <span>
+          <i class='bx bx-map'></i> 
+          <a href="https://www.google.com/maps?q=Nairobi,Kenya" target="_blank">Nairobi, Kenya</a>
+        </span>
       </div>
-      <ul>
-        <li><a href="{% url 'homepage' %}">Home</a></li>
-        <li><a href="{% url 'about'%}" class="active">About</a></li>
-        <li class="dropdown"><a href="#">Solutions</a>
-          <ul class="dropdown-menu">
-            <li><a href="{% url 'IT_support' %}">IT Support & Consultancy</a></li>
-            <li><a href="{% url 'software' %}">Software & Systems</a></li>
-            <li><a href="{% url 'hardware' %}">Hardware & Iot</a></li>
-            <li><a href="{% url 'networking' %}">Networking & Connectivity</a></li>
-            <li><a href="{%url 'cybersec' %}">Cyber & Physical Security</a></li>
-            <li><a href="{% url 'cloud' %}">Cloud Computing</a></li>
-          </ul>
-        </li>
-        <li><a href="{% url 'events' %}">Events</a> </li>
-        <li><a href="{%url 'contact' %}">Contact Us</a></li>
-      </ul>
-    </nav>
+      <div class="right-socials">
+        <a href="#"><i class='bx bxl-facebook'></i></a>
+        <a href="#"><i class='bx bxl-twitter'></i></a>
+        <a href="#"><i class='bx bxl-instagram'></i></a>
+        <a href="#"><i class='bx bxl-linkedin'></i></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 🔹 Main Header -->
+  <header class="main-header">
+    <div class="container header-content">
+      <div class="logo">
+        <a href="{% url 'homepage' %}">
+          <img src="{% static 'Sphere/images/logo.jpg' %}" alt="NovaSphere IT Solutions">
+          <span class="logo-text">NovaSphere</span>
+        </a>
+      </div>
+      <!-- 🔹 Mobile Hamburger Menu -->
+      <div class="menu-toggle" id="menu-toggle">
+        <i class='bx bx-menu'></i>
+      </div>
+
+      <!-- 🔹 Navigation Menu -->
+      <nav class="navbar" id="navbar">
+        <ul>
+          <li><a href="{% url 'homepage' %}">Home</a></li>
+          <li><a href="{% url 'about' %}">About Us</a></li>
+          <li class="dropdown">
+            <a href="#">Solutions<i class='bx bx-chevron-down'></i></a>
+            <div class="mega-menu">
+              <div class="mega-column">
+                <h4>Our Solutions</h4>
+                  <a href="{% url 'IT_support' %}">ICT Consultancy</a>
+                  <a href="{% url 'software' %}">Software & Systems</a>
+                  <a href="{% url 'hardware' %}">Hardware Installations</a>
+                  <a href="{% url 'networking' %}">Networking & Connectivity</a>
+                  <a href="{%url 'cybersec' %}">CyberSecurity</a>
+                  <a href="{% url 'cloud' %}">Cloud Integration</a>
+                  <a href="{% url 'cctv' %}">CCTV Installations</a>
+                  <a href="{% url 'AI' %}">AI & Machine Learning Development</a>
+                  <a href="{% url 'IOT' %}">IoT Integration</a>
+              </div>
+            </div>
+          </li>
+          <li><a href="{% url 'events' %}">ICT Events</a></li>
+          <li><a href="{% url 'contact' %}">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
   </header>
 
-  <!-- Hero Section -->
-  <section class="hero-about">
-    <div class="overlay fade-in">
-      <h1>NovaSphere IT Solutions Ltd</h1>
-      <h3><span class="highlight">About Us</span></h3>
-    </div>
-  </section>
+  <!-- 🔹 Hero Section -->
+  <section class="hzn-info" id="hzn-intro">
+    <div class="hzn-bg-layer"></div>
+    <div class="hzn-container">
+      <div class="hzn-header" data-animate>
+        <h2 class="hzn-title">
+          <i class='bx bx-building-house'></i> Who We Are
+        </h2>
+        <p class="hzn-subtitle">
+          Your trusted partner in IT transformation, innovation, and digital success.
+        </p>
+        <span class="hzn-line"></span>
+      </div>
 
-  <!-- Mission & Vision Section -->
-  <section class="mission-vision-section" id="mission">
-    <div class="mission-vision-container">
-      <div class="mission-vision-grid">
-        <!-- Mission Card -->
-        <div class="mission-card">
-          <div class="card-icon">
-            <i class="fas fa-bullseye"></i>
-          </div>
-          <h2>Our Mission</h2>
-          <p>To deliver cutting-edge IT solutions that empower businesses to achieve their full potential through innovative technology, reliable services, and strategic partnerships that drive digital transformation across East Africa.</p>
-          <div class="mission-features">
-            <div class="feature">
-              <i class="fas fa-check-circle"></i>
-              <span>Innovation-driven solutions</span>
-            </div>
-            <div class="feature">
-              <i class="fas fa-check-circle"></i>
-              <span>Client-centric approach</span>
-            </div>
-            <div class="feature">
-              <i class="fas fa-check-circle"></i>
-              <span>Quality assurance</span>
-            </div>
-          </div>
+      <div class="hzn-content-grid" data-animate>
+        <div class="hzn-text">
+          <p>
+            <strong>Our MissionTo deliver cutting-edge IT solutions</strong> that empower businesses to achieve their full potential through innovative technology, reliable services, and strategic partnerships that drive digital transformation across East Africa. 
+          </p>
+          <p>
+            <strong>Our Vision</strong> is to be East Africa's premier IT solutions provider, recognized for excellence in digital innovation, trusted partnerships, and transformative technologies that shape the future of business in the digital age.
+          </p>
         </div>
 
-        <!-- Vision Card -->
-        <div class="vision-card">
-          <div class="card-icon">
-            <i class="fas fa-eye"></i>
+        <div class="hzn-image">
+          <img src="{% static 'Sphere/images/still-life-books-versus-technology.webp' %}"  alt="IT Experts at Work">
+        </div>
+      </div>
+
+      <div class="hzn-divider" data-animate>
+        <i class='bx bx-dots-horizontal-rounded'></i>
+      </div>
+
+      <div class="hzn-choose" id="hzn-why" data-animate>
+        <h3><i class='bx bx-trophy'></i> Our Core Values</h3>
+        <p class="hzn-lead">
+          We combine <strong>innovation, expertise, and technology</strong> to deliver dependable IT solutions that empower businesses to thrive in the digital era.
+        </p>
+
+        <div class="hzn-features">
+          <div class="hzn-feature-box" data-animate>
+            <i class='bx bx-network-chart'></i>
+            <h4>Innovation</h4>
+            <p>We constantly push boundaries and embrace emerging technologies to deliver cutting-edge solutions that keep our clients ahead in the digital landscape.</p>
           </div>
-          <h2>Our Vision</h2>
-          <p>To be East Africa's premier IT solutions provider, recognized for excellence in digital innovation, trusted partnerships, and transformative technologies that shape the future of business in the digital age.</p>
-          <div class="vision-features">
-            <div class="feature">
-              <i class="fas fa-rocket"></i>
-              <span>Regional leadership</span>
-            </div>
-            <div class="feature">
-              <i class="fas fa-shield-alt"></i>
-              <span>Trusted partnerships</span>
-            </div>
-            <div class="feature">
-              <i class="fas fa-gem"></i>
-              <span>Excellence in service</span>
-            </div>
+          <div class="hzn-feature-box" data-animate>
+            <i class='bx bx-code-alt'></i>
+            <h4>Integrity</h4>
+            <p>We build lasting trust through transparency, honesty, and ethical practices in all our business relationships, operations, and client interactions.</p>
+          </div>
+          <div class="hzn-feature-box" data-animate>
+            <i class='bx bx-shield-quarter'></i>
+            <h4>Collaboration</h4>
+            <p>We believe in the power of teamwork and strategic partnerships to achieve extraordinary results and create shared success for our clients and community.</p>
+          </div>
+          <div class="hzn-feature-box" data-animate>
+            <i class='bx bx-cloud'></i>
+            <h4>Excellence</h4>
+            <p>We strive for perfection in every project, delivering quality solutions that exceed expectations and set new standards in the IT industry.</p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Values Section -->
-  <section class="values-section">
-    <div class="values-background">
-       <div class="bg-overlay"></div>
-      <!-- Animated Shapes -->
-      <div class="animated-shapes" id="animatedShapes"></div>
-      <div class="values-overlay">
-        <div class="container">
-          <div class="section-header">
-            <span class="section-subtitle">Our Principles</span>
-            <h2 class="section-title">Core <span class="highlight">Values</span></h2>
-            <p class="section-description">The foundation that drives our innovation and shapes our commitment to excellence in every solution we deliver</p>
-          </div>
+  <!-- 🔹 IT Animation Section -->
+  <section class="hzn-trace" id="hzn-trace">
+    <div class="trace-bg"></div>
+    <div class="trace-overlay"></div>
+    <div class="trace-circuit">
+      <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+        <g stroke="rgba(255,255,255,0.08)" stroke-width="1">
+          <path d="M100 150 H1100 M150 300 H1050 M200 450 H1000 M250 600 H950" />
+          <path d="M300 100 V700 M600 150 V650 M900 200 V600" />
+          <circle cx="300" cy="300" r="3" fill="rgba(255,255,255,0.15)" />
+          <circle cx="900" cy="400" r="3" fill="rgba(255,255,255,0.2)" />
+        </g>
+      </svg>
+    </div>
 
-          <div class="values-grid">
-            <div class="value-card">
-              <div class="value-icon">
-                <i class="fas fa-lightbulb"></i>
-              </div>
-              <h3>Innovation</h3>
-              <p>We constantly push boundaries and embrace emerging technologies to deliver cutting-edge solutions that keep our clients ahead in the digital landscape.</p>
-            </div>
+    <div class="trace-content" data-animate>
+      <h2 class="trace-title">
+        <i class='bx bx-chip'></i>
+        <span>CONNECT</span>
+        <span class="trace-divider"></span>
+        <span>SECURE</span>
+        <span class="trace-divider"></span>
+        <span>INNOVATE</span>
+        <i class='bx bx-server'></i>
+      </h2>
 
-            <div class="value-card">
-              <div class="value-icon">
-                <i class="fas fa-handshake"></i>
-              </div>
-              <h3>Integrity</h3>
-              <p>We build lasting trust through transparency, honesty, and ethical practices in all our business relationships, operations, and client interactions.</p>
-            </div>
+      <p class="trace-text">
+        From networking and cloud deployment to cybersecurity and IT support, Horizon IT Ltd ensures your business runs smoothly, securely, and efficiently — helping you focus on what truly matters: growth and innovation.
+      </p>
+    </div>
+  </section>
 
-            <div class="value-card">
-              <div class="value-icon">
-                <i class="fas fa-users"></i>
-              </div>
-              <h3>Collaboration</h3>
-              <p>We believe in the power of teamwork and strategic partnerships to achieve extraordinary results and create shared success for our clients and community.</p>
-            </div>
-
-            <div class="value-card">
-              <div class="value-icon">
-                <i class="fas fa-trophy"></i>
-              </div>
-              <h3>Excellence</h3>
-              <p>We strive for perfection in every project, delivering quality solutions that exceed expectations and set new standards in the IT industry.</p>
-            </div>
-          </div>
+  <!-- 🔹 Partners -->
+  <section class="hzn-clients" id="hzn-clients">
+    <div class="clients-bg"></div>
+    <div class="container" data-animate>
+      <h2 class="clients-title">Our Partners</h2>
+      <div class="clients-slider">
+        <div class="clients-track">
+          <div class="client-slide"><img src="{% static 'Sphere/images/horizon.jpg' %}" alt="Horizon" /></div>
+          <div class="client-slide"><img src="{% static 'Sphere/images/Dfl.jpg' %}" alt="DFL" /></div>
+          <div class="client-slide"><img src="{% static 'Sphere/images/NIKE NEW LOGO_page-0001.jpg' %}" alt="Nike" /></div>
+          <div class="client-slide"><img src="{% static 'Sphere/images/geoken.png' %}" alt="Geoken" /></div>
         </div>
       </div>
     </div>
   </section>
 
- 
-  <!-- Services CTA Section -->
-  <section class="services-cta-section">
-  <div class="services-cta-container">
-  <div class="cta-content">
-    <p>We provide comprehensive solutions to help your business grow and succeed in today's competitive market.</p>
+  <!-- 🔹 How Our Solutions Ease IT for You -->
+<section class="hzn-telematics" id="hzn-solutions">
+  <div class="telematics-bg"></div>
+  <div class="container" data-animate>
+    <h2 class="telematics-title">
+      <i class='bx bx-happy-alt'></i>
+      HOW OUR SOLUTIONS EASE IT FOR YOU
+      <i class='bx bx-rocket'></i>
+    </h2>
+
+    <div class="telematics-grid">
+      <div class="telematics-card" data-animate>
+        <div class="card-icon"><i class='bx bx-refresh'></i></div>
+        <h3>Streamlined Operations</h3>
+        <ul>
+          <li>We automate and simplify daily IT processes—reducing manual tasks and minimizing downtime across your organization.</li>
+        <li>From software deployment to network maintenance, our solutions save time, improve reliability, and free your team to focus on strategic initiatives.</li> 
+        </ul>
+      </div>
+
+      <div class="telematics-card" data-animate>
+        <div class="card-icon"><i class='bx bx-lock-alt'></i></div>
+        <h3>Enhanced Security</h3>
+        <ul>
+          <li>Our integrated cybersecurity solutions protect your systems and sensitive data from modern threats.</li>
+          <li>We implement multi-layered defenses, real-time monitoring, and proactive incident response so your business stays secure and compliant.</li>
+        </ul>
+      </div>
+
+      <div class="telematics-card" data-animate>
+        <div class="card-icon"><i class='bx bx-cloud'></i></div>
+        <h3>Cloud-Driven Flexibility</h3>
+        <ul>
+          <li>Access your data and applications securely from anywhere with our cloud integration solutions.</li>
+          <li>We enable seamless collaboration, scalable storage, and efficient backup strategies so your workforce can operate without limits.</li>
+        </ul>
+      </div>
+
+      <div class="telematics-card" data-animate>
+        <div class="card-icon"><i class='bx bx-trending-up'></i></div>
+        <h3>Boosted Productivity</h3>
+        <ul>
+          <li>Our smart IT systems enhance team collaboration and streamline communication across departments.</li>
+          <li>By optimizing workflows and integrating digital tools, we help your teams complete tasks faster and more accurately, driving business growth.</li>
+        </ul>
+      </div>
+
+      <div class="telematics-card" data-animate>
+        <div class="card-icon"><i class='bx bx-analyse'></i></div>
+        <h3>Actionable Insights</h3>
+        <ul>
+          <li>We transform complex IT data into clear, real-time insights for better decision-making.</li>
+          <li>Our analytics dashboards highlight trends, risks, and opportunities so you can optimize operations and make informed, strategic choices.</li>
+        </ul>
+      </div>
+      <div class="telematics-card" data-animate>
+        <div class="card-icon"><i class='bx bx-support'></i></div>
+        <h3>Reliable Support</h3>
+        <ul>
+          <li>Our 24/7 support team ensures that your IT systems run smoothly, preventing disruptions before they affect your business.</li>
+          <li>We offer proactive maintenance, troubleshooting, and expert guidance so your organization can focus on growth instead of technical challenges.</li>
+        </ul>
+      </div>
+    </div>
   </div>
-  <div class="cta-buttons">
-    <a href="#" class="cta-button primary">
-      <i class="fas fa-phone"></i>Contact Us
-    </a>
-    <a href="#" class="cta-button secondary">
-      <i class="fas fa-info-circle"></i>Learn More
-    </a>
-  </div>
-</div>
 </section>
 
-  <footer class="fade-in delay-3">
-    <div class="footer-container">
-      <div class="footer-column">
-        <h3>About NovaSphere</h3>
-        <p>Leading provider of enterprise IT solutions helping businesses transform and grow through innovative technology.</p>
-        <div class="social-links">
-          <a href="#"><i class="fab fa-twitter"></i></a>
-          <a href="#"><i class="fab fa-linkedin"></i></a>
-          <a href="#"><i class="fab fa-facebook"></i></a>
-          <a href="#"><i class="fab fa-instagram"></i></a>
+
+  <footer id="footer" class="footer-section">
+    <div class="footer-overlay"></div>
+    <div class="footer-glow"></div>
+
+    <div class="container footer-container">
+      <div class="footer-grid">
+        
+        <!-- Column 1: Logo & About -->
+        <div class="footer-about" data-animate="fade-up">
+          <h2 class="footer-logo">
+            <span class="highlight">NovaSphere</span> IT Solutions
+          </h2>
+          <p class="footer-desc">
+            Your trusted partner for comprehensive enterprise IT services, digital transformation, 
+            and technology innovation. We deliver solutions that drive business growth and operational excellence.
+          </p>
+          <div class="footer-social">
+            <a href="#" class="social-link"><i class="bx bxl-linkedin"></i></a>
+            <a href="#" class="social-link"><i class="bx bxl-twitter"></i></a>
+            <a href="#" class="social-link"><i class="bx bxl-facebook"></i></a>
+          </div>
         </div>
-      </div>
-      
-      <div class="footer-column">
-        <h3>Quick Links</h3>
-        <ul>
-          <li><a href="{%url 'homepage%'}">Home</a></li>
-          <li><a href="{%url 'about%'}">About Us</a></li>
-          <li><a href="{%url 'contact'%}">Contact</a></li>
-        </ul>
-      </div>
-      
-      <div class="footer-column">
-        <h3>Services</h3>
-        <ul>
-          <li><a href="{% url 'IT_support' %}">IT Support & Consultancy</a></li>
-          <li><a href="{% url 'software' %}">Software & Systems</a></li>
-          <li><a href="{% url 'hardware' %}">Hardware & Iot</a></li>
-          <li><a href="{% url 'networking' %}">Networking & Connectivity</a></li>
-          <li><a href="{%url 'cybersec' %}">Cyber & Physical Security</a></li>
-          <li><a href="{% url 'cloud' %}">Cloud Computing</a></li>
-        </ul>
-      </div>
-      
-      <div class="footer-column">
-        <h3>Contact Us</h3>
-        <ul class="contact-info">
-          <li><i class="fas fa-map-marker-alt"></i> 123 Tech Street, Nairobi, Kenya</li>
-          <li><i class="fas fa-phone"></i> +254 700 123456</li>
-          <li><i class="fas fa-envelope"></i> info@novasphere.com</li>
-        </ul>
+
+        <!-- Column 2: Quick Links -->
+        <div class="footer-links" data-animate="fade-up" data-delay="200">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="{% url 'homepage' %}">Home</a></li>
+            <li><a href="{% url 'about' %}">About Us</a></li>
+            <li><a href="#how-we-do-it">Our Methodology</a></li>
+            <li><a href="#why-novasphere">Why Choose Us</a></li>
+            <li><a href="{% url 'contact' %}">Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 3: Services -->
+        <div class="footer-links" data-animate="fade-up" data-delay="400">
+          <h3>Our Services</h3>
+          <ul>
+            <li><a href="{% url 'IT_support' %}">ICT Consultancy</a></li>
+            <li><a href="{% url 'software' %}">Software & Systems</a></li>
+            <li><a href="{% url 'hardware' %}">Hardware Installations</a></li>
+            <li><a href="{% url 'networking' %}">Networking & Connectivity</a></li>
+            <li><a href="{%url 'cybersec' %}">CyberSecurity</a></li>
+            <li><a href="{% url 'cloud' %}">Cloud Integration</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 4: Contact -->
+        <div class="footer-contact" data-animate="fade-up" data-delay="600">
+          <h3>Contact Info</h3>
+          <p><i class="bx bx-map"></i> Mpaka Plaza, Mpaka Road, Nairobi, Kenya</p>
+          <p><i class="bx bx-phone"></i> +254 714 937 625</p>
+          <p><i class="bx bx-phone"></i> +254 718 040 905</p>
+          <p><i class="bx bx-envelope"></i> info@novasphereitsolutions.co.ke</p>
+          <p><i class="bx bx-time-five"></i> Mon - Fri: 8:00am – 6:00pm</p>
+          <p><i class="bx bx-time-five"></i> Sat: 9:00am – 1:00pm</p>
+        </div>
+
       </div>
     </div>
-    
+
     <div class="footer-bottom">
-      <p>&copy; 2025 NovaSphere. All Rights Reserved.</p>
+      <p>© {% now "Y" %} NovaSphere IT Solutions. All Rights Reserved.</p>
     </div>
   </footer>
 
-  <script src="{%static 'Sphere/js/main.js' %}"></script>
+  <!-- Floating WhatsApp Icon (Bottom Left) -->
+  <a href="https://wa.me/254714937625" target="_blank" 
+     id="whatsapp-float" 
+     class="floating-icon whatsapp">
+    <i class='bx bxl-whatsapp'></i>
+  </a>
+
+
+
+  <!-- JavaScript -->
+  <script src="{% static 'Sphere/js/main1.js' %}"></script>
 </body>
 </html>

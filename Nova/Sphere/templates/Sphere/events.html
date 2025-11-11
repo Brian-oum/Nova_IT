@@ -2,197 +2,346 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NovaSphere IT Solutions Ltd</title>
-  <meta name="description" content="NovaSphere IT Solutions Ltd delivers cutting-edge, futuristic IT services across East Africa — from cloud computing, cybersecurity, and networking to digital transformation. We empower businesses through innovation, integrity, and excellence in every solution." />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{% block title %}NovaSphere IT Solutions | Enterprise IT Services & Digital Transformation{% endblock %}</title>
 
+  <meta name="description" content="NovaSphere IT Solutions provides comprehensive enterprise IT services, cybersecurity, cloud solutions, and digital transformation across Africa.">
+  <meta name="keywords" content="IT services, cybersecurity, cloud computing, enterprise software, networking, digital transformation">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="NovaSphere IT Solutions">
+  <link rel="canonical" href="https://novasphereitsolutions.co.ke/">
+  
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Metal+Mania&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
-  <!-- FontAwesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
-  <!-- Custom Styles -->
-  <link rel="stylesheet" href="{% static 'Sphere/css/style.css' %}">
-  <link rel="stylesheet" href="{% static 'Sphere/css/events.css' %}">
+  <!-- Box Icons-->
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="{% static 'Sphere/css/style1.css' %}" />
+  <link rel="icon" href="{% static 'Sphere/images/logo.jpg' %}" type="image/x-icon" />
 </head>
 <body>
-  <!-- Header -->
-  <header>
-    <div class="logo"><span>No</span>va<span>Sphere</span></div>
-    <nav>
-      <div class="mobile-menu"><i class="fas fa-bars"></i></div>
-      <ul>
-        <li><a href="{% url 'homepage' %}">Home</a></li>
-        <li><a href="{% url 'about'%}">About</a></li>
-        <li class="dropdown">Solutions
-          <ul class="dropdown-menu">
-            <li><a href="{% url 'IT_support' %}">IT Support & Consultancy</a></li>
-            <li><a href="{% url 'software' %}">Software & Systems</a></li>
-            <li><a href="{% url 'hardware' %}">Hardware & IoT</a></li>
-            <li><a href="{% url 'networking' %}">Networking & Connectivity</a></li>
-            <li><a href="{% url 'cybersec' %}">Cyber & Physical Security</a></li>
-            <li><a href="{% url 'cloud' %}">Cloud Computing</a></li>
-          </ul>
-        </li>
-        <li><a href="{% url 'events' %}" class="active">Events</a></li>
-        <li><a href="{% url 'contact' %}">Contact Us</a></li>
-      </ul>
-    </nav>
-  </header>
 
-  <!-- Hero Section -->
-  <section class="hero-events">
-    <div class="overlay fade-in">
-      <h1>NovaSphere IT Solutions Ltd</h1>
-      <h3><span class="highlight">Training & Events</span></h3>
+
+  <!-- 🔹 Subheader -->
+  <div class="subheader">
+    <div class="container subheader-content">
+      <div class="left-info">
+        <span>
+          <i class='bx bx-phone'></i> 
+          <a href="tel:+254714937625">+254 714 937 625</a> |
+          <a href="tel:+254 718 040 905">+254 718 040 905</a>
+        </span>
+        <span>
+          <i class='bx bx-envelope'></i> 
+          <a href="mailto:info@novasphereitsolutions.co.ke">info@novasphereitsolutions.co.ke</a>
+        </span>
+        <span>
+          <i class='bx bx-map'></i> 
+          <a href="https://www.google.com/maps?q=Nairobi,Kenya" target="_blank">Nairobi, Kenya</a>
+        </span>
+      </div>
+      <div class="right-socials">
+        <a href="#"><i class='bx bxl-facebook'></i></a>
+        <a href="#"><i class='bx bxl-twitter'></i></a>
+        <a href="#"><i class='bx bxl-instagram'></i></a>
+        <a href="#"><i class='bx bxl-linkedin'></i></a>
+      </div>
     </div>
-  </section>
+  </div>
 
-  <!-- Main Event Section -->
-  <main class="event-container1">
-    <h1 class="page-title">Events</h1>
-
-    <!-- === TOGGLE BUTTONS === -->
-    <div class="event-toggle">
-      <button id="upcomingBtn" class="toggle-btn active">Upcoming Events</button>
-      <button id="pastBtn" class="toggle-btn">Past Events</button>
-    </div>
-
-    <!-- === UPCOMING EVENTS === -->
-    <section id="upcomingEvents" class="events-section active">
-      <div class="events-container">
-        {% for event in events %}
-          <div class="event-card">
-            {% if event.image %}
-              <img src="{{ event.image.url }}" alt="{{ event.name }}">
-            {% endif %}
-            <div class="event-card-content">
-              <h2>{{ event.name }}</h2>
-              <p class="short-detail">{{ event.short_detail }}</p>
-
-              <div class="event-meta">
-                <span><i class="far fa-calendar"></i> {{ event.event_date }}</span>
-                <span><i class="far fa-clock"></i> {{ event.event_time }}</span>
-                <span><i class="fas fa-map-marker-alt"></i> {{ event.location }}</span>
-              </div>
-
-              <div class="slots-info">
-                <span class="slots-count"><i class="fas fa-users"></i> {{ event.verified_count }}/{{ event.people_required }} slots</span>
-                <span class="fee">KSh {{ event.registration_fee }}</span>
-              </div>
-
-              {% if event.is_full %}
-                <button class="btn" disabled>Event Full</button>
-              {% else %}
-                <a href="{% url 'payment_instructions' event.id %}">
-                  <button class="btn btn-accent">Register Now</button>
-                </a>
-              {% endif %}
-            </div>
-          </div>
-        {% empty %}
-          <div class="empty-state">
-            <i class="far fa-calendar-times"></i>
-            <h3>No Upcoming Events</h3>
-            <p>We don't have any upcoming events at the moment. Please check back later!</p>
-          </div>
-        {% endfor %}
+  <!-- 🔹 Main Header -->
+  <header class="main-header">
+    <div class="container header-content">
+      <div class="logo">
+        <a href="{% url 'homepage' %}">
+          <img src="{% static 'Sphere/images/logo.jpg' %}" alt="NovaSphere IT Solutions">
+          <span class="logo-text">NovaSphere</span>
+        </a>
       </div>
-    </section>
-
-    <!-- === PAST EVENTS === -->
-    <section id="pastEvents" class="events-section">
-      <div class="events-container">
-        {% for event in past_events %}
-          <div class="event-card past">
-            {% if event.image %}
-              <img src="{{ event.image.url }}" alt="{{ event.name }}">
-            {% endif %}
-            <div class="event-card-content">
-              <h2>{{ event.name }}</h2>
-              <p class="short-detail">{{ event.short_detail }}</p>
-
-              <div class="event-meta">
-                <span><i class="far fa-calendar"></i> {{ event.event_date }}</span>
-                <span><i class="far fa-clock"></i> {{ event.event_time }}</span>
-                <span><i class="fas fa-map-marker-alt"></i> {{ event.location }}</span>
-              </div>
-
-              <button class="btn disabled">Completed</button>
-            </div>
-          </div>
-        {% empty %}
-          <div class="empty-state">
-            <i class="far fa-calendar-check"></i>
-            <h3>No Past Events Yet</h3>
-            <p>Once we complete events, they’ll appear here.</p>
-          </div>
-        {% endfor %}
-      </div>
-    </section>
-  </main>
-
-  <!-- Footer -->
-  <footer>
-    <div class="footer-container">
-      <div class="footer-column">
-        <h3>About NovaSphere</h3>
-        <p>Leading provider of enterprise IT solutions helping businesses transform and grow through innovative technology.</p>
-        <div class="social-links">
-          <a href="#"><i class="fab fa-twitter"></i></a>
-          <a href="#"><i class="fab fa-linkedin"></i></a>
-          <a href="#"><i class="fab fa-facebook"></i></a>
-          <a href="#"><i class="fab fa-instagram"></i></a>
-        </div>
+      <!-- 🔹 Mobile Hamburger Menu -->
+      <div class="menu-toggle" id="menu-toggle">
+        <i class='bx bx-menu'></i>
       </div>
 
-      <div class="footer-column">
-        <h3>Quick Links</h3>
+      <!-- 🔹 Navigation Menu -->
+      <nav class="navbar" id="navbar">
         <ul>
           <li><a href="{% url 'homepage' %}">Home</a></li>
           <li><a href="{% url 'about' %}">About Us</a></li>
+          <li class="dropdown">
+            <a href="#">Solutions<i class='bx bx-chevron-down'></i></a>
+            <div class="mega-menu">
+              <div class="mega-column">
+                <h4>Our Solutions</h4>
+                  <a href="{% url 'IT_support' %}">ICT Consultancy</a>
+                  <a href="{% url 'software' %}">Software & Systems</a>
+                  <a href="{% url 'hardware' %}">Hardware Installations</a>
+                  <a href="{% url 'networking' %}">Networking & Connectivity</a>
+                  <a href="{%url 'cybersec' %}">CyberSecurity</a>
+                  <a href="{% url 'cloud' %}">Cloud Integration</a>
+                  <a href="{% url 'cctv' %}">CCTV Installations</a>
+                  <a href="{% url 'AI' %}">AI & Machine Learning Development</a>
+                  <a href="{% url 'IOT' %}">IoT Integration</a>
+              </div>
+            </div>
+          </li>
+          <li><a href="{% url 'events' %}">ICT Events</a></li>
           <li><a href="{% url 'contact' %}">Contact</a></li>
         </ul>
-      </div>
+      </nav>
+    </div>
+  </header>
 
-      <div class="footer-column">
-        <h3>Services</h3>
-        <ul>
-          <li><a href="{% url 'IT_support' %}">IT Support & Consultancy</a></li>
-          <li><a href="{% url 'software' %}">Software & Systems</a></li>
-          <li><a href="{% url 'hardware' %}">Hardware & IoT</a></li>
-          <li><a href="{% url 'networking' %}">Networking & Connectivity</a></li>
-          <li><a href="{% url 'cybersec' %}">Cyber & Physical Security</a></li>
-          <li><a href="{% url 'cloud' %}">Cloud Computing</a></li>
-        </ul>
+  <section class="hzn-info" id="hzn-intro">
+  <div class="hzn-bg-layer"></div>
+  <div class="hzn-container">
+    <div class="hzn-header" data-animate>
+      <h2 class="hzn-title"><i class='bx bx-group'></i> ICT Events & Bootcamps</h2>
+      <p class="hzn-subtitle">
+        Empowering individuals and organizations with hands-on ICT skills through training, workshops, and innovation events.
+      </p>
+      <span class="hzn-line"></span>
+    </div>
+
+    <!-- 🔹 Toggle Buttons -->
+    <div class="event-toggle" data-animate>
+      <button class="toggle-btn active" id="upcomingBtn">Upcoming Events</button>
+      <button class="toggle-btn" id="pastBtn">Past Events</button>
+    </div>
+
+    <!-- 🔹 Upcoming Events -->
+    <div class="events-container" id="upcomingEvents" data-animate>
+      {% for event in upcoming_events %}
+      <div class="event-card">
+        {% if event.image %}
+        <img src="{{ event.image.url }}" alt="{{ event.name }}">
+        {% else %}
+        <img src="{% static 'Sphere/images/default_event.webp' %}" alt="Event">
+        {% endif %}
+
+        <div class="event-content">
+          <h3>{{ event.name }}</h3>
+          <p>{{ event.short_detail }}</p>
+          <p><strong>Date:</strong> {{ event.event_date|date:"M d, Y" }}</p>
+          {% if event.start_time and event.end_time %}
+            <p><strong>Time:</strong> {{ event.event_duration }}</p>
+          {% endif %}
+          <p><strong>Location:</strong> {{ event.location }}</p>
+          <p><strong>Participants:</strong> {{ event.people_required }}</p>
+          <p><strong>Registration Fee:</strong> KES {{ event.registration_fee }}</p>
+        </div>
+      </div>
+      {% empty %}
+      <p class="no-events">No upcoming events available at the moment.</p>
+      {% endfor %}
+    </div>
+
+    <!-- 🔹 Past Events -->
+    <div class="events-container hidden" id="pastEvents" data-animate>
+      {% for event in past_events %}
+      <div class="event-card">
+        {% if event.image %}
+        <img src="{{ event.image.url }}" alt="{{ event.name }}">
+        {% else %}
+        <img src="{% static 'Sphere/images/default_event.webp' %}" alt="Event">
+        {% endif %}
+
+        <div class="event-content">
+          <h3>{{ event.name }}</h3>
+          <p>{{ event.short_detail }}</p>
+          <p><strong>Date:</strong> {{ event.event_date|date:"M d, Y" }}</p>
+          {% if event.start_time and event.end_time %}
+            <p><strong>Time:</strong> {{ event.event_duration }}</p>
+          {% endif %}
+          <p><strong>Location:</strong> {{ event.location }}</p>
+          <p><strong>Participants:</strong> {{ event.people_required }}</p>
+          <p><strong>Registration Fee:</strong> KES {{ event.registration_fee }}</p>
+        </div>
+      </div>
+      {% empty %}
+      <p class="no-events">No past events found.</p>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+ <footer id="footer" class="footer-section">
+    <div class="footer-overlay"></div>
+    <div class="footer-glow"></div>
+
+    <div class="container footer-container">
+      <div class="footer-grid">
+        
+        <!-- Column 1: Logo & About -->
+        <div class="footer-about" data-animate="fade-up">
+          <h2 class="footer-logo">
+            <span class="highlight">NovaSphere</span> IT Solutions
+          </h2>
+          <p class="footer-desc">
+            Your trusted partner for comprehensive enterprise IT services, digital transformation, 
+            and technology innovation. We deliver solutions that drive business growth and operational excellence.
+          </p>
+          <div class="footer-social">
+            <a href="#" class="social-link"><i class="bx bxl-linkedin"></i></a>
+            <a href="#" class="social-link"><i class="bx bxl-twitter"></i></a>
+            <a href="#" class="social-link"><i class="bx bxl-facebook"></i></a>
+          </div>
+        </div>
+
+        <!-- Column 2: Quick Links -->
+        <div class="footer-links" data-animate="fade-up" data-delay="200">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="{% url 'homepage' %}">Home</a></li>
+            <li><a href="{% url 'about' %}">About Us</a></li>
+            <li><a href="#how-we-do-it">Our Methodology</a></li>
+            <li><a href="#why-novasphere">Why Choose Us</a></li>
+            <li><a href="{% url 'contact' %}">Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 3: Services -->
+        <div class="footer-links" data-animate="fade-up" data-delay="400">
+          <h3>Our Services</h3>
+          <ul>
+            <li><a href="{% url 'IT_support' %}">ICT Consultancy</a></li>
+            <li><a href="{% url 'software' %}">Software & Systems</a></li>
+            <li><a href="{% url 'hardware' %}">Hardware Installations</a></li>
+            <li><a href="{% url 'networking' %}">Networking & Connectivity</a></li>
+            <li><a href="{%url 'cybersec' %}">CyberSecurity</a></li>
+            <li><a href="{% url 'cloud' %}">Cloud Integration</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 4: Contact -->
+        <div class="footer-contact" data-animate="fade-up" data-delay="600">
+          <h3>Contact Info</h3>
+          <p><i class="bx bx-map"></i> Mpaka Plaza, Mpaka Road, Nairobi, Kenya</p>
+          <p><i class="bx bx-phone"></i> +254 714 937 625</p>
+          <p><i class="bx bx-phone"></i> +254 718 040 905</p>
+          <p><i class="bx bx-envelope"></i> info@novasphereitsolutions.co.ke</p>
+          <p><i class="bx bx-time-five"></i> Mon - Fri: 8:00am – 6:00pm</p>
+          <p><i class="bx bx-time-five"></i> Sat: 9:00am – 1:00pm</p>
+        </div>
+
       </div>
     </div>
+
     <div class="footer-bottom">
-      <p>&copy; 2025 NovaSphere. All Rights Reserved.</p>
+      <p>© {% now "Y" %} NovaSphere IT Solutions. All Rights Reserved.</p>
     </div>
   </footer>
 
-  <!-- JS -->
+  <!-- Floating WhatsApp Icon (Bottom Left) -->
+  <a href="https://wa.me/254714937625" target="_blank" 
+     id="whatsapp-float" 
+     class="floating-icon whatsapp">
+    <i class='bx bxl-whatsapp'></i>
+  </a>
+
+
+
+  <!-- JavaScript -->
+  <script src="{% static 'Sphere/js/main1.js' %}"></script>
   <script>
-    document.getElementById("upcomingBtn").addEventListener("click", function() {
-      document.getElementById("upcomingEvents").classList.add("active");
-      document.getElementById("pastEvents").classList.remove("active");
-      this.classList.add("active");
-      document.getElementById("pastBtn").classList.remove("active");
-    });
+  const upcomingBtn = document.getElementById('upcomingBtn');
+  const pastBtn = document.getElementById('pastBtn');
+  const upcomingEvents = document.getElementById('upcomingEvents');
+  const pastEvents = document.getElementById('pastEvents');
 
-    document.getElementById("pastBtn").addEventListener("click", function() {
-      document.getElementById("pastEvents").classList.add("active");
-      document.getElementById("upcomingEvents").classList.remove("active");
-      this.classList.add("active");
-      document.getElementById("upcomingBtn").classList.remove("active");
-    });
-  </script>
+  upcomingBtn.addEventListener('click', () => {
+    upcomingBtn.classList.add('active');
+    pastBtn.classList.remove('active');
+    upcomingEvents.classList.remove('hidden');
+    pastEvents.classList.add('hidden');
+  });
 
-  <script src="{% static 'Sphere/js/main.js' %}"></script>
+  pastBtn.addEventListener('click', () => {
+    pastBtn.classList.add('active');
+    upcomingBtn.classList.remove('active');
+    pastEvents.classList.remove('hidden');
+    upcomingEvents.classList.add('hidden');
+  });
+</script>
+
+<!-- 🔹 CSS Styling -->
+<style>
+  .event-toggle {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin: 2rem 0;
+  }
+
+  .toggle-btn {
+    padding: 0.7rem 1.5rem;
+    border: 2px solid var(--accent-color, #0078ff);
+    background: transparent;
+    color: var(--text-color, #222);
+    font-weight: 600;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .toggle-btn.active {
+    background: var(--accent-color, #0078ff);
+    color: #fff;
+  }
+
+  .events-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2rem;
+  }
+
+  .hidden {
+    display: none;
+  }
+
+  .event-card {
+    background: #fff;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+  }
+
+  .event-card:hover {
+    transform: translateY(-6px);
+  }
+
+  .event-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+
+  .event-content {
+    padding: 1.2rem;
+  }
+
+  .event-content h3 {
+    margin-bottom: 0.5rem;
+    color: var(--accent-color, #0078ff);
+  }
+
+  .event-content p {
+    margin-bottom: 0.5rem;
+    line-height: 1.6;
+  }
+
+  .no-events {
+    text-align: center;
+    color: #353535;
+    font-style: italic;
+  }
+</style>
 </body>
 </html>

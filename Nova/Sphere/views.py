@@ -39,6 +39,15 @@ def cybersec(request):
 def cloud(request):
     return render(request, 'Sphere/cloud.html')
 
+def cctv(request):
+    return render(request, 'Sphere/cctv.html')
+
+def AI(request):
+    return render(request, 'Sphere/AI.html')
+
+def IOT(request):
+    return render(request, 'Sphere/IOT.html')
+
 def events(request):
     today = date.today()
 

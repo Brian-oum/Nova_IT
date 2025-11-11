@@ -1,0 +1,295 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{% block title %}NovaSphere IT Solutions | Enterprise IT Services & Digital Transformation{% endblock %}</title>
+
+  <meta name="description" content="NovaSphere IT Solutions provides comprehensive enterprise IT services, cybersecurity, cloud solutions, and digital transformation across Africa.">
+  <meta name="keywords" content="IT services, cybersecurity, cloud computing, enterprise software, networking, digital transformation">
+  <meta name="robots" content="index, follow">
+  <meta name="author" content="NovaSphere IT Solutions">
+  <link rel="canonical" href="https://novasphereitsolutions.co.ke/">
+  
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <!-- Box Icons-->
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="{% static 'Sphere/css/style1.css' %}" />
+  <link rel="icon" href="{% static 'Sphere/images/logo.jpg' %}" type="image/x-icon" />
+</head>
+<body>
+
+
+  <!-- 🔹 Subheader -->
+  <div class="subheader">
+    <div class="container subheader-content">
+      <div class="left-info">
+        <span>
+          <i class='bx bx-phone'></i> 
+          <a href="tel:+254714937625">+254 714 937 625</a> |
+          <a href="tel:+254718040905">+254 718 040 905</a>
+        </span>
+        <span>
+          <i class='bx bx-envelope'></i> 
+          <a href="mailto:info@novasphereitsolutions.co.ke">info@novasphereitsolutions.co.ke</a>
+        </span>
+        <span>
+          <i class='bx bx-map'></i> 
+          <a href="https://www.google.com/maps?q=Nairobi,Kenya" target="_blank">Nairobi, Kenya</a>
+        </span>
+      </div>
+      <div class="right-socials">
+        <a href="#"><i class='bx bxl-facebook'></i></a>
+        <a href="#"><i class='bx bxl-twitter'></i></a>
+        <a href="#"><i class='bx bxl-instagram'></i></a>
+        <a href="#"><i class='bx bxl-linkedin'></i></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 🔹 Main Header -->
+  <header class="main-header">
+    <div class="container header-content">
+      <div class="logo">
+        <a href="{% url 'homepage' %}">
+          <img src="{% static 'Sphere/images/logo.jpg' %}" alt="NovaSphere IT Solutions">
+          <span class="logo-text">NovaSphere</span>
+        </a>
+      </div>
+      <!-- 🔹 Mobile Hamburger Menu -->
+      <div class="menu-toggle" id="menu-toggle">
+        <i class='bx bx-menu'></i>
+      </div>
+
+      <!-- 🔹 Navigation Menu -->
+      <nav class="navbar" id="navbar">
+        <ul>
+          <li><a href="{% url 'homepage' %}">Home</a></li>
+          <li><a href="{% url 'about' %}">About Us</a></li>
+          <li class="dropdown">
+            <a href="#">Solutions<i class='bx bx-chevron-down'></i></a>
+            <div class="mega-menu">
+              <div class="mega-column">
+                <h4>Our Solutions</h4>
+                  <a href="{% url 'IT_support' %}">ICT Consultancy</a>
+                  <a href="{% url 'software' %}">Software & Systems</a>
+                  <a href="{% url 'hardware' %}">Hardware Installations</a>
+                  <a href="{% url 'networking' %}">Networking & Connectivity</a>
+                  <a href="{%url 'cybersec' %}">CyberSecurity</a>
+                  <a href="{% url 'cloud' %}">Cloud Integration</a>
+                  <a href="{% url 'cctv' %}">CCTV Installations</a>
+                  <a href="{% url 'AI' %}">AI & Machine Learning Development</a>
+                  <a href="{% url 'IOT' %}">IoT Integration</a>
+              </div>
+            </div>
+          </li>
+          <li><a href="{% url 'events' %}">ICT Events</a></li>
+          <li><a href="{% url 'contact' %}">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  !-- 🔹 Hero Section -->
+  <section class="hzn-info" id="hzn-intro">
+    <div class="hzn-bg-layer"></div>
+    <div class="hzn-container">
+      <div class="hzn-header" data-animate>
+        <h2 class="hzn-title"><i class='bx bx-camera-home'></i> CCTV Installation & Smart Surveillance</h2>
+        <p class="hzn-subtitle">
+          Safeguard your business with modern, intelligent, and IoT-integrated surveillance systems.
+        </p>
+        <span class="hzn-line"></span>
+      </div>
+
+      <div class="hzn-content-grid" data-animate>
+        <div class="hzn-text">
+          <p>
+            <strong>NovaSphere IT Solutions</strong> provides professional <strong>CCTV installation and smart surveillance solutions</strong> designed to protect businesses, institutions, and homes. We specialize in IP-based camera systems, remote viewing, and AI-powered video analytics.
+          </p>
+          <p>
+            Whether you need an indoor or outdoor security system, our experts ensure end-to-end deployment — from design and installation to network integration and real-time monitoring.
+          </p>
+        </div>
+
+        <div class="hzn-image">
+          <img src="{% static 'Sphere/images/v380.avif' %}" alt="CCTV Installation">
+        </div>
+      </div>
+
+      <div class="hzn-divider" data-animate>
+        <i class='bx bx-dots-horizontal-rounded'></i>
+      </div>
+
+      <div class="hzn-choose" id="hzn-why" data-animate>
+        <h3><i class='bx bx-shield-quarter'></i> Why Choose Our CCTV & Surveillance Services</h3>
+        <p class="hzn-lead">
+          We combine modern hardware and IoT-based analytics to give you complete visibility and peace of mind.
+        </p>
+
+        <div class="hzn-features">
+          <div class="hzn-feature-box" data-animate>
+            <i class='bx bx-video'></i>
+            <h4>High-Definition Surveillance</h4>
+            <p>Crystal-clear HD and 4K camera systems for indoor and outdoor monitoring with night vision capabilities.</p>
+          </div>
+
+          <div class="hzn-feature-box" data-animate>
+            <i class='bx bx-wifi'></i>
+            <h4>Smart Network Integration</h4>
+            <p>Connect your CCTV systems to secure networks for remote access and real-time monitoring via mobile or web apps.</p>
+          </div>
+
+          <div class="hzn-feature-box" data-animate>
+            <i class='bx bx-brain'></i>
+            <h4>AI Video Analytics</h4>
+            <p>Detect motion, recognize faces, and analyze activities with intelligent AI and ML algorithms.</p>
+          </div>
+
+          <div class="hzn-feature-box" data-animate>
+            <i class='bx bx-cloud-upload'></i>
+            <h4>Cloud Storage & Management</h4>
+            <p>Store and access surveillance footage securely via cloud platforms for easy backup and retrieval.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 🔹 Workflow -->
+  <section class="hzn-telematics" id="hzn-telematics">
+    <div class="telematics-bg"></div>
+
+    <div class="container" data-animate>
+      <h2 class="telematics-title">
+        <i class='bx bx-cog'></i> Our CCTV Installation Process <i class='bx bx-camera'></i>
+      </h2>
+
+      <div class="telematics-grid">
+        <div class="telematics-card" data-animate>
+          <div class="card-icon"><i class='bx bx-analyse'></i></div>
+          <h3>Site Survey & Design</h3>
+          <ul>
+            <li><strong>Needs Assessment:</strong> Evaluate security requirements and site layout.</li>
+            <li><strong>System Design:</strong> Choose optimal camera placement and wiring configuration.</li>
+          </ul>
+        </div>
+
+        <div class="telematics-card" data-animate>
+          <div class="card-icon"><i class='bx bx-cctv'></i></div>
+          <h3>Installation & Setup</h3>
+          <ul>
+            <li><strong>Hardware Setup:</strong> Install cameras, NVRs, and network connections.</li>
+            <li><strong>Configuration:</strong> Calibrate lenses, zones, and recording schedules.</li>
+          </ul>
+        </div>
+
+        <div class="telematics-card" data-animate>
+          <div class="card-icon"><i class='bx bx-mobile-alt'></i></div>
+          <h3>Remote Access & Integration</h3>
+          <ul>
+            <li><strong>IoT Connectivity:</strong> Enable real-time mobile and web-based monitoring.</li>
+            <li><strong>Smart Alerts:</strong> Receive instant notifications for motion or intrusion detection.</li>
+          </ul>
+        </div>
+
+        <div class="telematics-card" data-animate>
+          <div class="card-icon"><i class='bx bx-check-shield'></i></div>
+          <h3>Testing & Maintenance</h3>
+          <ul>
+            <li><strong>System Validation:</strong> Ensure full functionality and video clarity.</li>
+            <li><strong>Ongoing Support:</strong> Regular inspections and updates for optimal performance.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+ <footer id="footer" class="footer-section">
+    <div class="footer-overlay"></div>
+    <div class="footer-glow"></div>
+
+    <div class="container footer-container">
+      <div class="footer-grid">
+        
+        <!-- Column 1: Logo & About -->
+        <div class="footer-about" data-animate="fade-up">
+          <h2 class="footer-logo">
+            <span class="highlight">NovaSphere</span> IT Solutions
+          </h2>
+          <p class="footer-desc">
+            Your trusted partner for comprehensive enterprise IT services, digital transformation, 
+            and technology innovation. We deliver solutions that drive business growth and operational excellence.
+          </p>
+          <div class="footer-social">
+            <a href="#" class="social-link"><i class="bx bxl-linkedin"></i></a>
+            <a href="#" class="social-link"><i class="bx bxl-twitter"></i></a>
+            <a href="#" class="social-link"><i class="bx bxl-facebook"></i></a>
+          </div>
+        </div>
+
+        <!-- Column 2: Quick Links -->
+        <div class="footer-links" data-animate="fade-up" data-delay="200">
+          <h3>Quick Links</h3>
+          <ul>
+            <li><a href="{% url 'homepage' %}">Home</a></li>
+            <li><a href="{% url 'about' %}">About Us</a></li>
+            <li><a href="#how-we-do-it">Our Methodology</a></li>
+            <li><a href="#why-novasphere">Why Choose Us</a></li>
+            <li><a href="{% url 'contact' %}">Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 3: Services -->
+        <div class="footer-links" data-animate="fade-up" data-delay="400">
+          <h3>Our Services</h3>
+          <ul>
+            <li><a href="{% url 'IT_support' %}">ICT Consultancy</a></li>
+            <li><a href="{% url 'software' %}">Software & Systems</a></li>
+            <li><a href="{% url 'hardware' %}">Hardware Installations</a></li>
+            <li><a href="{% url 'networking' %}">Networking & Connectivity</a></li>
+            <li><a href="{%url 'cybersec' %}">CyberSecurity</a></li>
+            <li><a href="{% url 'cloud' %}">Cloud Integration</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 4: Contact -->
+        <div class="footer-contact" data-animate="fade-up" data-delay="600">
+          <h3>Contact Info</h3>
+          <p><i class="bx bx-map"></i> Mpaka Plaza, Mpaka Road, Nairobi, Kenya</p>
+          <p><i class="bx bx-phone"></i> +254 714 937 625</p>
+          <p><i class="bx bx-phone"></i> +254 718 040 905</p>
+          <p><i class="bx bx-envelope"></i> info@novasphereitsolutions.co.ke</p>
+          <p><i class="bx bx-time-five"></i> Mon - Fri: 8:00am – 6:00pm</p>
+          <p><i class="bx bx-time-five"></i> Sat: 9:00am – 1:00pm</p>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© {% now "Y" %} NovaSphere IT Solutions. All Rights Reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Floating WhatsApp Icon (Bottom Left) -->
+  <a href="https://wa.me/254714937625" target="_blank" 
+     id="whatsapp-float" 
+     class="floating-icon whatsapp">
+    <i class='bx bxl-whatsapp'></i>
+  </a>
+
+
+
+  <!-- JavaScript -->
+  <script src="{% static 'Sphere/js/main1.js' %}"></script>
+</body>
+</html>
