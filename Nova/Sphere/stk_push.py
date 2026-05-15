@@ -16,7 +16,7 @@ def get_access_token():
     if res.status_code == 200:
         return res.json()["access_token"]
     else:
-        print("❌ Failed to get access token:", res.text)
+        print(" Failed to get access token:", res.text)
         return None
 
 
@@ -27,7 +27,7 @@ def initiate_stk_push(phone, amount, event_name, user_id):
     access_token = get_access_token()
 
     if not access_token:
-        print("❌ Could not get access token.")
+        print(" Could not get access token.")
         return {"error": "Failed to authenticate"}
 
     payload = {
@@ -52,7 +52,7 @@ def initiate_stk_push(phone, amount, event_name, user_id):
 
     headers = {"Content-Type": "application/json", "Authorization": f"Bearer {access_token}"}
 
-    print(f"🚀 Sending STK Push for event: {event_name}")
+    print(f" Sending STK Push for event: {event_name}")
     response = requests.post(stk_url, json=payload, headers=headers)
     try:
         res_json = response.json()

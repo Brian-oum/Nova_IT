@@ -70,3 +70,48 @@ class ContactMessage(models.Model):
 
     def __str__(self):
         return f"{self.name} - {self.subject}"
+    
+# SwasTasks Models
+class Task(models.Model):
+    STATUS_CHOICES = [
+        ('open', 'Open'),
+        ('assigned', 'Assigned'),
+        ('completed', 'Completed'),
+    ]
+    client = models.ForeignKey(User, on_delete=models.CASCADE, related_name='posted_tasks')
+    title = models.CharField(max_length=255)
+    description = models.TextField()
+    budget = models.DecimalField(max_digits=10, decimal_places=2)
+    deadline = models.DateField()
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='open')
+    attachment = models.FileField(upload_to='task_attachments/', blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.title
+
+
+class Bid(models.Model):
+    task = models.ForeignKey(Task, on_delete=models.CASCADE, related_name='bids')
+    worker = models.ForeignKey(User, on_delete=models.CASCADE, related_name='bids')
+    amount = models.DecimalField(max_digits=10, decimal_places=2)
+    message = models.TextField()
+    is_approved = models.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ('task', 'worker')  # one bid per worker per task
+
+    def __str__(self):
+        return f"{self.worker.username} bid on {self.task.title}"
+
+
+class WorkSubmission(models.Model):
+    task = models.ForeignKey(Task, on_delete=models.CASCADE, related_name='submissions')
+    worker = models.ForeignKey(User, on_delete=models.CASCADE, related_name='submissions')
+    file = models.FileField(upload_to='work_submissions/')
+    notes = models.TextField(blank=True)
+    submitted_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.worker.username} submitted for {self.task.title}"

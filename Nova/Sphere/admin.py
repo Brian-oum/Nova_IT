@@ -4,7 +4,7 @@ from django.core.mail import send_mail
 from django.conf import settings
 from django.contrib import messages
 
-# --- Inline for Event page ---
+#  Inline for Event page 
 class PaymentVerificationInline(admin.TabularInline):
     model = PaymentVerification
     extra = 0
@@ -13,7 +13,7 @@ class PaymentVerificationInline(admin.TabularInline):
     show_change_link = True
 
 
-# --- Event Admin ---
+#  Event Admin 
 @admin.register(Event)
 class EventAdmin(admin.ModelAdmin):
     list_display = ("name", "event_date", "event_duration", "location", "registered", "people_required")
@@ -23,7 +23,7 @@ class EventAdmin(admin.ModelAdmin):
     inlines = [PaymentVerificationInline]
 
 
-# --- Payment Verification Admin ---
+#  Payment Verification Admin 
 @admin.register(PaymentVerification)
 class PaymentVerificationAdmin(admin.ModelAdmin):
     list_display = ('full_name', 'email', 'event', 'mpesa_code', 'verified', 'timestamp')
@@ -39,16 +39,16 @@ class PaymentVerificationAdmin(admin.ModelAdmin):
 
         super().save_model(request, obj, form, change)
 
-        # ✅ When verification changes from False → True
+        #  When verification changes from False → True
         if obj.verified and not was_verified:
             event = obj.event
 
-            # ✅ Safely increase slot count
+            #  Safely increase slot count
             if event.registered < event.people_required:
                 event.registered += 1
                 event.save()
 
-            # ✅ Send access email
+            #  Send access email
             try:
                 send_mail(
                     subject=f"Access Link for {event.name}",
@@ -63,6 +63,6 @@ class PaymentVerificationAdmin(admin.ModelAdmin):
                     recipient_list=[obj.email],
                     fail_silently=False,
                 )
-                messages.success(request, f"✅ Email sent to {obj.full_name}.")
+                messages.success(request, f" Email sent to {obj.full_name}.")
             except Exception as e:
-                messages.error(request, f"❌ Failed to send email: {e}")
+                messages.error(request, f" Failed to send email: {e}")

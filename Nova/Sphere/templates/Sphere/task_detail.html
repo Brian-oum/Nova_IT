@@ -1,0 +1,344 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>{{ task.title }}  SWAS Tasks</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --navy:#0a0f1e; --navy2:#111827; --accent:#00c2ff; --accent2:#0077b6;
+      --green:#00e096; --red:#ff5c5c; --yellow:#ffc107;
+      --text:#e2e8f0; --muted:#94a3b8; --card:#161f35; --border:rgba(0,194,255,0.12);
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { background:var(--navy); color:var(--text); font-family:'DM Sans',sans-serif; min-height:100vh; }
+ 
+    nav { background:rgba(10,15,30,0.97); border-bottom:1px solid var(--border); padding:0 5%; display:flex; align-items:center; justify-content:space-between; height:70px; position:sticky; top:0; z-index:100; backdrop-filter:blur(12px); }
+    .nav-logo { font-family:'Syne',sans-serif; font-weight:800; font-size:1.3rem; color:#fff; text-decoration:none; }
+    .nav-logo span { color:var(--accent); }
+    .nav-links { display:flex; gap:2rem; list-style:none; }
+    .nav-links a { color:var(--muted); text-decoration:none; font-size:0.9rem; font-weight:500; transition:color 0.2s; }
+    .nav-links a:hover { color:var(--accent); }
+    .nav-cta { display:flex; gap:0.75rem; }
+    .btn { padding:0.55rem 1.2rem; border-radius:6px; font-size:0.88rem; font-weight:600; cursor:pointer; text-decoration:none; transition:all 0.2s; font-family:'DM Sans',sans-serif; display:inline-block; border:none; }
+    .btn-primary { background:var(--accent); color:var(--navy); }
+    .btn-primary:hover { background:#00a8e0; }
+    .btn-outline { border:1px solid var(--accent); color:var(--accent); background:transparent; }
+    .btn-outline:hover { background:var(--accent); color:var(--navy); }
+    .btn-green { background:var(--green); color:var(--navy); }
+    .btn-green:hover { background:#00c47e; }
+    .btn-red { background:transparent; border:1px solid var(--red); color:var(--red); }
+    .btn-sm { padding:0.35rem 0.9rem; font-size:0.8rem; }
+ 
+    .messages { padding:1rem 5% 0; }
+    .msg { padding:0.8rem 1.2rem; border-radius:8px; font-size:0.9rem; margin-bottom:0.5rem; }
+    .msg-success { background:rgba(0,224,150,0.12); border:1px solid var(--green); color:var(--green); }
+    .msg-error { background:rgba(255,80,80,0.1); border:1px solid var(--red); color:var(--red); }
+    .msg-warning { background:rgba(255,193,7,0.1); border:1px solid var(--yellow); color:var(--yellow); }
+ 
+    .container { max-width:1100px; margin:0 auto; padding:2.5rem 5%; }
+    .breadcrumb { font-size:0.82rem; color:var(--muted); margin-bottom:1.5rem; }
+    .breadcrumb a { color:var(--accent); text-decoration:none; }
+ 
+    .layout { display:grid; grid-template-columns:1fr 360px; gap:2rem; align-items:start; }
+ 
+    /* MAIN PANEL */
+    .task-main { display:flex; flex-direction:column; gap:1.5rem; }
+    .card { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:1.5rem; }
+    .card-title { font-family:'Syne',sans-serif; font-size:1rem; font-weight:700; color:var(--accent); margin-bottom:1rem; text-transform:uppercase; letter-spacing:0.05em; font-size:0.78rem; }
+ 
+    .task-title-main { font-family:'Syne',sans-serif; font-size:1.8rem; font-weight:800; color:#fff; margin-bottom:0.5rem; }
+    .task-badges { display:flex; gap:0.75rem; flex-wrap:wrap; margin-bottom:1rem; }
+    .badge { padding:0.25rem 0.75rem; border-radius:20px; font-size:0.75rem; font-weight:600; }
+    .badge-open { background:rgba(0,224,150,0.15); color:var(--green); border:1px solid rgba(0,224,150,0.3); }
+    .badge-assigned { background:rgba(0,194,255,0.15); color:var(--accent); border:1px solid rgba(0,194,255,0.3); }
+    .badge-completed { background:rgba(148,163,184,0.15); color:var(--muted); border:1px solid rgba(148,163,184,0.3); }
+    .task-desc { color:var(--muted); line-height:1.8; font-size:0.95rem; }
+ 
+    .meta-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; }
+    .meta-box { background:rgba(0,194,255,0.04); border:1px solid var(--border); border-radius:8px; padding:1rem; }
+    .meta-box .label { font-size:0.72rem; color:var(--muted); text-transform:uppercase; letter-spacing:0.06em; margin-bottom:0.3rem; }
+    .meta-box .value { font-size:1rem; font-weight:700; color:#fff; }
+    .meta-box .value.green { color:var(--green); }
+ 
+    .attachment-link { display:inline-flex; align-items:center; gap:0.5rem; color:var(--accent); font-size:0.88rem; text-decoration:none; }
+    .attachment-link:hover { text-decoration:underline; }
+ 
+    /* BIDS */
+    .bid-item { border:1px solid var(--border); border-radius:10px; padding:1.1rem 1.2rem; margin-bottom:0.75rem; display:flex; justify-content:space-between; align-items:flex-start; gap:1rem; transition:border-color 0.2s; }
+    .bid-item.approved { border-color:var(--green); background:rgba(0,224,150,0.05); }
+    .bid-item:last-child { margin-bottom:0; }
+    .bid-worker { font-weight:600; color:#fff; font-size:0.95rem; }
+    .bid-amount { color:var(--green); font-weight:700; font-size:1rem; }
+    .bid-message { color:var(--muted); font-size:0.85rem; margin-top:0.3rem; line-height:1.5; }
+    .bid-approved-tag { font-size:0.75rem; color:var(--green); font-weight:600; margin-top:0.3rem; }
+    .bid-actions { display:flex; gap:0.5rem; flex-shrink:0; }
+    .no-bids { color:var(--muted); font-size:0.9rem; text-align:center; padding:1.5rem; }
+ 
+    /* SIDEBAR */
+    .sidebar { display:flex; flex-direction:column; gap:1.5rem; position:sticky; top:90px; }
+ 
+    /* BID FORM */
+    .form-group { margin-bottom:1rem; }
+    .form-group label { display:block; font-size:0.82rem; color:var(--muted); margin-bottom:0.4rem; font-weight:500; }
+    .form-group input, .form-group textarea { width:100%; background:rgba(255,255,255,0.04); border:1px solid var(--border); border-radius:7px; padding:0.7rem 0.9rem; color:#fff; font-family:'DM Sans',sans-serif; font-size:0.9rem; outline:none; transition:border-color 0.2s; }
+    .form-group input:focus, .form-group textarea:focus { border-color:var(--accent); }
+    .form-group textarea { resize:vertical; min-height:90px; }
+    .form-group input[type="file"] { padding:0.5rem; cursor:pointer; }
+ 
+    .already-bid { text-align:center; padding:1.2rem; }
+    .already-bid .status-icon { font-size:2rem; margin-bottom:0.5rem; }
+    .already-bid p { color:var(--muted); font-size:0.88rem; line-height:1.6; }
+    .already-bid strong { color:var(--green); display:block; margin-bottom:0.25rem; font-size:1rem; }
+ 
+    .submit-work-card { border-color:var(--green); }
+ 
+    @media(max-width:768px) {
+      .layout { grid-template-columns:1fr; }
+      .sidebar { position:static; }
+      .meta-grid { grid-template-columns:repeat(2,1fr); }
+    }
+ 
+    footer { background:var(--navy2); border-top:1px solid var(--border); padding:2rem 5%; text-align:center; color:var(--muted); font-size:0.85rem; margin-top:3rem; }
+    footer a { color:var(--accent); text-decoration:none; }
+  </style>
+</head>
+<body>
+ 
+<nav>
+  <a href="{% url 'homepage' %}" class="nav-logo">Nova<span>Sphere</span></a>
+  
+  <ul class="nav-links">
+    <li><a href="{% url 'homepage' %}">Home</a></li>
+    <li><a href="{% url 'task_list' %}">Tasks</a></li>
+    <li><a href="{% url 'events' %}">Events</a></li>
+    <li><a href="{% url 'contact' %}">Contact</a></li>
+  </ul>
+
+  <div class="nav-cta">
+    {% if user.is_authenticated %}
+      <span style="color: var(--muted); font-size: 0.8rem; align-self: center; margin-right: 0.5rem;">
+        Hi, <strong>{{ user.username }}</strong>
+      </span>
+
+      <a href="{% url 'dashboard' %}" class="btn btn-outline btn-sm">Dashboard</a>
+      <a href="{% url 'post_task' %}" class="btn btn-primary btn-sm"> Post Task</a>
+
+      <form action="{% url 'logout' %}" method="post" style="display: inline;">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-red btn-sm">Logout</button>
+      </form>
+      
+    {% else %}
+      <a href="{% url 'register' %}" class="btn btn-primary btn-sm">Join Now</a>
+      <a href="{% url 'login' %}" class="btn btn-outline btn-sm">Login</a>
+    {% endif %}
+  </div>
+</nav>
+ 
+{% if messages %}
+<div class="messages">
+  {% for message in messages %}
+    <div class="msg msg-{{ message.tags }}">{{ message }}</div>
+  {% endfor %}
+</div>
+{% endif %}
+ 
+<div class="container">
+  <div class="breadcrumb">
+    <a href="{% url 'task_list' %}">← All Tasks</a> / {{ task.title }}
+  </div>
+ 
+  <div class="layout">
+ 
+    <!-- LEFT: TASK DETAIL -->
+    <div class="task-main">
+ 
+      <div class="card">
+        <div class="task-title-main">{{ task.title }}</div>
+        <div class="task-badges">
+          <span class="badge badge-{{ task.status }}">{{ task.get_status_display }}</span>
+        </div>
+        <div class="task-desc">{{ task.description }}</div>
+      </div>
+ 
+      <div class="card">
+        <div class="card-title">Task Details</div>
+        <div class="meta-grid">
+          <div class="meta-box">
+            <div class="label">Budget</div>
+            <div class="value green">KES {{ task.budget }}</div>
+          </div>
+          <div class="meta-box">
+            <div class="label">Deadline</div>
+            <div class="value">{{ task.deadline }}</div>
+          </div>
+          <div class="meta-box">
+            <div class="label">Posted by</div>
+            <div class="value">{{ task.client.username }}</div>
+          </div>
+        </div>
+        {% if task.attachment %}
+        <div style="margin-top:1rem; padding-top:1rem; border-top:1px solid var(--border);">
+          <div class="card-title" style="margin-bottom:0.5rem;">Attachment</div>
+          <a href="{{ task.attachment.url }}" class="attachment-link" target="_blank">
+            📎 Download Task File
+          </a>
+        </div>
+        {% endif %}
+      </div>
+ 
+      <!-- BIDS LIST (visible to task owner) -->
+      {% if user == task.client %}
+      <div class="card">
+        <div class="card-title">Bids Received ({{ bids.count }})</div>
+        {% for bid in bids %}
+        <div class="bid-item {% if bid.is_approved %}approved{% endif %}">
+          <div>
+            <div class="bid-worker">{{ bid.worker.username }}</div>
+            <div class="bid-amount">KES {{ bid.amount }}</div>
+            <div class="bid-message">{{ bid.message }}</div>
+            {% if bid.is_approved %}
+              <div class="bid-approved-tag"> Selected — Assigned Worker</div>
+            {% endif %}
+          </div>
+          {% if task.status == 'open' and not bid.is_approved %}
+          <div class="bid-actions">
+            <form method="POST" action="{% url 'approve_bid' bid.id %}">
+              {% csrf_token %}
+              <button type="submit" class="btn btn-green btn-sm">Select</button>
+            </form>
+          </div>
+          {% endif %}
+        </div>
+        {% empty %}
+        <div class="no-bids">No bids yet. Share this task to get more visibility.</div>
+        {% endfor %}
+      </div>
+      {% endif %}
+ 
+      <!-- SUBMITTED WORK (visible to task owner) -->
+      {% if user == task.client and task.submissions.exists %}
+      <div class="card">
+        <div class="card-title">Submitted Work</div>
+        {% for sub in task.submissions.all %}
+        <div style="padding:0.75rem 0; border-bottom:1px solid var(--border);">
+          <div style="font-weight:600; color:#fff; margin-bottom:0.3rem;">{{ sub.worker.username }}</div>
+          {% if sub.notes %}<div style="color:var(--muted); font-size:0.88rem; margin-bottom:0.5rem;">{{ sub.notes }}</div>{% endif %}
+          <a href="{{ sub.file.url }}" class="btn btn-outline btn-sm" target="_blank">⬇ Download Work</a>
+          <span style="font-size:0.78rem; color:var(--muted); margin-left:0.75rem;">{{ sub.submitted_at|date:"M d, Y H:i" }}</span>
+        </div>
+        {% endfor %}
+      </div>
+      {% endif %}
+ 
+    </div>
+ 
+    <!-- RIGHT: SIDEBAR -->
+    <div class="sidebar">
+ 
+      {% if user.is_authenticated %}
+ 
+        <!-- WORKER: show bid status or bid form -->
+        {% if user != task.client %}
+ 
+          {% if user_submission %}
+          <!-- Already submitted work -->
+          <div class="card submit-work-card">
+            <div class="card-title">Work Submitted</div>
+            <div class="already-bid">
+              <strong>Work Delivered!</strong>
+              <p>Your submission is under review. Payment will be processed after approval.</p>
+            </div>
+          </div>
+ 
+          {% elif approved_bid and approved_bid.worker == user %}
+          <!-- Approved — show upload form -->
+          <div class="card submit-work-card">
+            <div class="card-title"> You're Selected!</div>
+            <p style="color:var(--muted); font-size:0.88rem; margin-bottom:1rem; line-height:1.6;">Your bid was approved. Complete the work and upload your deliverable below.</p>
+            <form method="POST" action="{% url 'submit_work' task.id %}" enctype="multipart/form-data">
+              {% csrf_token %}
+              <div class="form-group">
+                <label>Upload Your Work *</label>
+                <input type="file" name="file" required/>
+              </div>
+              <div class="form-group">
+                <label>Notes to Client (optional)</label>
+                <textarea name="notes" placeholder="Any notes about your submission..."></textarea>
+              </div>
+              <button type="submit" class="btn btn-green" style="width:100%;">Submit Work</button>
+            </form>
+          </div>
+ 
+          {% elif user_bid %}
+          <!-- Already bid — waiting -->
+          <div class="card">
+            <div class="card-title">Your Bid</div>
+            <div class="already-bid">
+              <strong style="color:var(--accent);">Bid Submitted</strong>
+              <p>Your bid of <strong style="color:var(--green); display:inline;">KES {{ user_bid.amount }}</strong> is under review. You'll be notified when selected.</p>
+            </div>
+          </div>
+ 
+          {% elif task.status == 'open' %}
+          <!-- Place a bid -->
+          <div class="card">
+            <div class="card-title">Place Your Bid</div>
+            <form method="POST" action="{% url 'place_bid' task.id %}">
+              {% csrf_token %}
+              <div class="form-group">
+                <label>Your Bid Amount (KES) *</label>
+                <input type="number" name="amount" placeholder="e.g. 1500" min="1" required/>
+              </div>
+              <div class="form-group">
+                <label>Why should you be selected? *</label>
+                <textarea name="message" placeholder="Describe your experience and approach..." required></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary" style="width:100%;">Submit Bid</button>
+            </form>
+          </div>
+ 
+          {% else %}
+          <div class="card">
+            <div class="already-bid">
+              <div class="status-icon"></div>
+              <p>This task has already been assigned and is no longer accepting bids.</p>
+            </div>
+          </div>
+          {% endif %}
+ 
+        {% else %}
+        <!-- Client view sidebar -->
+        <div class="card">
+          <div class="card-title">Your Task</div>
+          <p style="color:var(--muted); font-size:0.88rem; line-height:1.6;">
+            You posted this task. Review the bids on the left and click <strong style="color:var(--green);">Select</strong> next to the bidder you want to assign.
+          </p>
+          <div style="margin-top:1rem; padding-top:1rem; border-top:1px solid var(--border); display:flex; flex-direction:column; gap:0.5rem;">
+            <div style="font-size:0.82rem; color:var(--muted);">Total bids: <span style="color:var(--accent); font-weight:600;">{{ bids.count }}</span></div>
+            <div style="font-size:0.82rem; color:var(--muted);">Status: <span style="color:var(--green); font-weight:600;">{{ task.get_status_display }}</span></div>
+          </div>
+        </div>
+        {% endif %}
+ 
+      {% else %}
+      <div class="card">
+        <div class="card-title">Want to Bid?</div>
+        <p style="color:var(--muted); font-size:0.88rem; margin-bottom:1rem;">Login to place a bid on this task and start earning.</p>
+        <a href="{% url 'login' %}" class="btn btn-primary" style="width:100%; text-align:center;">Login to Bid</a>
+      </div>
+      {% endif %}
+ 
+    </div>
+  </div>
+</div>
+ 
+<footer>
+  <p>© 2025 NovaSphere. SWAS Tasks — <a href="{% url 'homepage' %}">Back to main site</a></p>
+</footer>
+ 
+</body>
+</html>

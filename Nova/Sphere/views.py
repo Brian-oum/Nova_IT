@@ -8,6 +8,8 @@ from datetime import date
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from .stk_push import initiate_stk_push
+from django.contrib.auth import login
+from .forms import StudentRegistrationForm
 
 
 # Core pages
@@ -64,7 +66,7 @@ def register_event(request, event_id):
         messages.warning(request, "You are already registered for this event.")
         return redirect("events")
 
-    # Register the user, but don't count them yet (not paid)
+    
     EventRegistration.objects.create(event=event, user=request.user)
 
     messages.success(request, f"You have successfully registered for {event.name}! Please verify your payment.")
@@ -120,7 +122,7 @@ def contact(request):
                 fail_silently=False,
             )
 
-            messages.success(request, "✅ Your message has been sent successfully!")
+            messages.success(request, " Your message has been sent successfully!")
             return redirect('contact')
     else:
         form = ContactForm()
@@ -194,8 +196,147 @@ def pay_event(request, event_id):
         if "error" in response:
             messages.error(request, "Payment initiation failed. Try again.")
         else:
-            messages.success(request, "✅ Payment request sent. Check your phone simulator.")
+            messages.success(request, " Payment request sent. Check your phone simulator.")
 
         return redirect("pay_event", event_id=event.id)
 
     return render(request, "Sphere/pay_event.html", {"event": event})
+
+#SWASTASKS VIEWS
+# USER REGISTRATION 
+from django.contrib.auth.decorators import login_required
+from .models import Task, Bid, WorkSubmission
+
+def register(request):
+    if request.method == 'POST':
+        form = StudentRegistrationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)  # Log them in automatically
+            messages.success(request, f"Welcome to NovaSphere, {user.username}!")
+            return redirect('task_list')
+    else:
+        form = StudentRegistrationForm()
+    return render(request, 'Sphere/register.html', {'form': form})
+
+def task_list(request):
+    tasks = Task.objects.filter(status='open').order_by('-created_at')
+    return render(request, 'Sphere/task_list.html', {'tasks': tasks})
+
+
+@login_required
+def post_task(request):
+    if request.method == 'POST':
+        title = request.POST.get('title')
+        description = request.POST.get('description')
+        budget = request.POST.get('budget')
+        deadline = request.POST.get('deadline')
+        attachment = request.FILES.get('attachment')
+
+        Task.objects.create(
+            client=request.user,
+            title=title,
+            description=description,
+            budget=budget,
+            deadline=deadline,
+            attachment=attachment,
+        )
+        messages.success(request, ' Task posted successfully!')
+        return redirect('task_list')
+
+    return render(request, 'Sphere/post_task.html')
+
+
+@login_required
+def task_detail(request, task_id):
+    task = get_object_or_404(Task, id=task_id)
+    bids = task.bids.all().order_by('-created_at')
+    user_bid = bids.filter(worker=request.user).first()
+    approved_bid = bids.filter(is_approved=True).first()
+    user_submission = WorkSubmission.objects.filter(task=task, worker=request.user).first()
+
+    return render(request, 'Sphere/task_detail.html', {
+        'task': task,
+        'bids': bids,
+        'user_bid': user_bid,
+        'approved_bid': approved_bid,
+        'user_submission': user_submission,
+    })
+
+
+@login_required
+def place_bid(request, task_id):
+    task = get_object_or_404(Task, id=task_id)
+
+    if task.status != 'open':
+        messages.error(request, 'This task is no longer accepting bids.')
+        return redirect('task_detail', task_id=task.id)
+
+    if Bid.objects.filter(task=task, worker=request.user).exists():
+        messages.warning(request, ' You have already placed a bid on this task.')
+        return redirect('task_detail', task_id=task.id)
+
+    if request.method == 'POST':
+        amount = request.POST.get('amount')
+        message = request.POST.get('message')
+        Bid.objects.create(task=task, worker=request.user, amount=amount, message=message)
+        messages.success(request, ' Bid submitted! You will be notified if selected.')
+        return redirect('task_detail', task_id=task.id)
+
+    return redirect('task_detail', task_id=task.id)
+
+
+@login_required
+def approve_bid(request, bid_id):
+    bid = get_object_or_404(Bid, id=bid_id)
+
+    # Only the task's client can approve
+    if request.user != bid.task.client:
+        messages.error(request, 'You are not authorised to do this.')
+        return redirect('task_detail', task_id=bid.task.id)
+
+    # Approve this bid, reject all others
+    bid.task.bids.update(is_approved=False)
+    bid.is_approved = True
+    bid.save()
+    bid.task.status = 'assigned'
+    bid.task.save()
+
+    messages.success(request, f' {bid.worker.username} has been selected for this task!')
+    return redirect('task_detail', task_id=bid.task.id)
+
+
+@login_required
+def submit_work(request, task_id):
+    task = get_object_or_404(Task, id=task_id)
+    approved_bid = task.bids.filter(worker=request.user, is_approved=True).first()
+
+    if not approved_bid:
+        messages.error(request, 'You are not assigned to this task.')
+        return redirect('task_detail', task_id=task.id)
+
+    if request.method == 'POST':
+        file = request.FILES.get('file')
+        notes = request.POST.get('notes', '')
+
+        if not file:
+            messages.error(request, 'Please attach a file.')
+            return redirect('task_detail', task_id=task.id)
+
+        WorkSubmission.objects.create(task=task, worker=request.user, file=file, notes=notes)
+        task.status = 'completed'
+        task.save()
+        messages.success(request, ' Work submitted successfully! Payment will be processed after review.')
+        return redirect('task_detail', task_id=task.id)
+
+    return redirect('task_detail', task_id=task.id)
+
+
+@login_required
+def my_dashboard(request):
+    posted_tasks = Task.objects.filter(client=request.user).order_by('-created_at')
+    my_bids = Bid.objects.filter(worker=request.user).order_by('-created_at')
+    return render(request, 'Sphere/dashboard.html', {
+        'posted_tasks': posted_tasks,
+        'my_bids': my_bids,
+    })

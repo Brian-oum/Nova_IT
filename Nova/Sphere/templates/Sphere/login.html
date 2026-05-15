@@ -1,0 +1,203 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login  SWAS Tasks</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --navy: #0a0f1e;
+      --navy2: #111827;
+      --accent: #00c2ff;
+      --green: #00e096;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --card: #161f35;
+      --border: rgba(0,194,255,0.12);
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      background: var(--navy);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* NAV */
+    nav {
+      background: rgba(10,15,30,0.97);
+      border-bottom: 1px solid var(--border);
+      padding: 0 5%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 70px;
+    }
+    .nav-logo { font-family:'Syne',sans-serif; font-weight:800; font-size:1.3rem; color:#fff; text-decoration:none; }
+    .nav-logo span { color: var(--accent); }
+    .btn { padding:0.55rem 1.2rem; border-radius:6px; font-size:0.88rem; font-weight:600; cursor:pointer; text-decoration:none; transition:all 0.2s; font-family:'DM Sans',sans-serif; display:inline-block; }
+    .btn-outline { border:1px solid var(--accent); color:var(--accent); background:transparent; }
+    .btn-outline:hover { background:var(--accent); color:var(--navy); }
+    .btn-primary { background:var(--accent); color:var(--navy); border:none; width:100%; padding:0.75rem; font-size:0.95rem; border-radius:7px; }
+    .btn-primary:hover { background:#00a8e0; }
+
+    /* MAIN */
+    .page-body {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 3rem 1rem;
+      /* subtle radial glow */
+      background: radial-gradient(ellipse at 50% 0%, rgba(0,194,255,0.07) 0%, transparent 65%);
+    }
+
+    .reg-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 2.5rem 2rem;
+      width: 100%;
+      max-width: 420px;
+    }
+
+    .reg-card h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.7rem;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 0.3rem;
+      text-align: center;
+    }
+    .reg-card h1 span { color: var(--accent); }
+
+    .reg-card .subtitle {
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.88rem;
+      margin-bottom: 2rem;
+    }
+
+    /* MESSAGES */
+    .messages { margin-bottom: 1.25rem; }
+    .msg { padding: 0.75rem 1rem; border-radius: 8px; font-size: 0.88rem; margin-bottom: 0.5rem; }
+    .msg-error { background: rgba(255,80,80,0.1); border: 1px solid #ff5050; color: #ff5050; }
+    .msg-success { background: rgba(0,224,150,0.1); border: 1px solid var(--green); color: var(--green); }
+
+    /* FORM */
+    .form-group { margin-bottom: 1.1rem; }
+    .form-group label {
+      display: block;
+      font-size: 0.78rem;
+      color: var(--muted);
+      margin-bottom: 0.4rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .form-group input {
+      width: 100%;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: 7px;
+      padding: 0.75rem 1rem;
+      color: #fff;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.92rem;
+      outline: none;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .form-group input:focus {
+      border-color: var(--accent);
+      background: rgba(0,194,255,0.04);
+    }
+
+    .form-footer {
+      margin-top: 1.5rem;
+      text-align: center;
+      font-size: 0.87rem;
+      color: var(--muted);
+    }
+    .form-footer a { color: var(--accent); text-decoration: none; font-weight: 500; }
+    .form-footer a:hover { text-decoration: underline; }
+
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin: 1.5rem 0;
+      color: var(--muted);
+      font-size: 0.8rem;
+    }
+    .divider::before, .divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    footer {
+      background: var(--navy2);
+      border-top: 1px solid var(--border);
+      padding: 1.25rem 5%;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.82rem;
+    }
+    footer a { color: var(--accent); text-decoration: none; }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="{% url 'homepage' %}" class="nav-logo">Nova<span>Sphere</span></a>
+  <a href="{% url 'register' %}" class="btn btn-outline">Create Account</a>
+</nav>
+
+<div class="page-body">
+  <div class="reg-card">
+    <h1>Nova<span>Sphere</span></h1>
+    <p class="subtitle">Sign in to your SWAS Tasks account</p>
+
+    {% if messages %}
+    <div class="messages">
+      {% for message in messages %}
+        <div class="msg msg-{{ message.tags }}">{{ message }}</div>
+      {% endfor %}
+    </div>
+    {% endif %}
+
+    <form method="POST">
+      {% csrf_token %}
+      <div class="form-group">
+        <label>Username</label>
+        <input type="text" name="username" placeholder="Enter your username" required autofocus/>
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" name="password" placeholder="Enter your password" required/>
+      </div>
+      <button type="submit" class="btn btn-primary">Login →</button>
+    </form>
+
+    <div class="divider">or</div>
+
+    <p class="form-footer">
+      New here? <a href="{% url 'register' %}">Create an account</a>
+    </p>
+    <p class="form-footer" style="margin-top:0.5rem;">
+      <a href="{% url 'homepage' %}">← Back to main site</a>
+    </p>
+  </div>
+</div>
+
+<footer>
+  <p>© 2025 NovaSphere. SWAS Tasks — <a href="{% url 'homepage' %}">novasphereitsolutions.co.ke</a></p>
+</footer>
+
+</body>
+</html>

@@ -1,5 +1,6 @@
 from django.urls import path
 from . import views
+from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     # Core pages
@@ -23,4 +24,17 @@ urlpatterns = [
     path('solutions/networking/', views.networking, name='networking'),
     path('solutions/cybersec/', views.cybersec, name='cybersec'),
     path('solutions/cloud/', views.cloud, name='cloud'),
+
+
+    #SWAS Tasks paths
+    path('tasks/', views.task_list, name='task_list'),
+    path('tasks/post/', views.post_task, name='post_task'),
+    path('tasks/<int:task_id>/', views.task_detail, name='task_detail'),
+    path('tasks/<int:task_id>/bid/', views.place_bid, name='place_bid'),
+    path('bid/<int:bid_id>/approve/', views.approve_bid, name='approve_bid'),
+    path('tasks/<int:task_id>/submit/', views.submit_work, name='submit_work'),
+    path('dashboard/', views.my_dashboard, name='dashboard'),
+    path('register/', views.register, name='register'),
+    path('login/', auth_views.LoginView.as_view(template_name='Sphere/login.html'), name='login'),
+    path('logout/', auth_views.LogoutView.as_view(next_page='homepage'), name='logout'),
 ]

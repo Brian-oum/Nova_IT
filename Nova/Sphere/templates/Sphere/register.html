@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Join NovaSphere  SWAS Tasks</title>
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@800&family=DM+Sans:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root { --navy:#0a0f1e; --accent:#00c2ff; --card:#161f35; --border:rgba(0,194,255,0.12); --text:#e2e8f0; }
+        body { background:var(--navy); color:var(--text); font-family:'DM Sans', sans-serif; display:flex; justify-content:center; align-items:center; min-height:100vh; margin:0; }
+        .reg-card { background:var(--card); padding:2.5rem; border-radius:16px; border:1px solid var(--border); width:100%; max-width:400px; text-align:center; }
+        h1 { font-family:'Syne', sans-serif; font-size:1.8rem; margin-bottom:0.5rem; }
+        h1 span { color:var(--accent); }
+        .form-group { text-align:left; margin-bottom:1.2rem; }
+        input { width:100%; padding:0.8rem; background:rgba(255,255,255,0.05); border:1px solid var(--border); border-radius:8px; color:#fff; margin-top:0.4rem; }
+        .btn { width:100%; padding:0.8rem; background:var(--accent); color:var(--navy); border:none; border-radius:8px; font-weight:700; cursor:pointer; margin-top:1rem; }
+        a { color:var(--accent); text-decoration:none; font-size:0.9rem; }
+    </style>
+</head>
+<body>
+    <div class="reg-card">
+        <h1>Nova<span>Sphere</span></h1>
+        <p style="color:#94a3b8; margin-bottom:2rem;">Create your account to start bidding</p>
+        
+        <form method="POST">
+            {% csrf_token %}
+            {% for field in form %}
+                <div class="form-group">
+                    <label>{{ field.label }}</label>
+                    {{ field }}
+                    {% if field.errors %}<small style="color:#ff5c5c;">{{ field.errors.0 }}</small>{% endif %}
+                </div>
+            {% endfor %}
+            <button type="submit" class="btn">Create Account</button>
+        </form>
+        
+        <p style="margin-top:1.5rem; font-size:0.85rem;">Already have an account? <a href=" {% url 'login' %}">Login</a></p>
+    </div>
+</body>
+</html>

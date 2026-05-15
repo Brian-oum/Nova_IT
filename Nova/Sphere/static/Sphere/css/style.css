@@ -88,7 +88,7 @@ nav a.active::after {
   font-size: 1.5rem;
 }
 
-/* Vertical Dropdown Menu - SUPER COMPACT */
+/* Vertical Dropdown Menu */
 .dropdown {
   position: relative;
 }
@@ -142,7 +142,7 @@ nav a.active::after {
 
 .dropdown-menu a {
   display: block;
-  padding: 0.4rem 0.7rem; /* Increased padding for better touch targets */
+  padding: 0.4rem 0.7rem; 
   color: var(--white);
   transition: all 0.25s ease;
   width: 100%;
@@ -187,7 +187,7 @@ nav a.active::after {
   width: 100%;
   height: 100%;
   opacity: 0;
-  transition: opacity 2s ease-in-out; /* Smooth fade */
+  transition: opacity 2s ease-in-out; 
   z-index: 0;
 }
 
@@ -204,14 +204,14 @@ nav a.active::after {
   object-position: center;
   filter: brightness(0.7);
   transform: scale(1.05);
-  transition: transform 6s ease-in-out; /* Soft zoom animation */
+  transition: transform 6s ease-in-out;
 }
 
 .slide.active .slide-img {
   transform: scale(1);
 }
 
-/* Slide Content - Unique for each slide */
+/* Slide Content */
 .slide-content {
   position: absolute;
   top: 80%;
@@ -323,7 +323,7 @@ nav a.active::after {
   background: rgba(255, 255, 255, 0.8);
 }
 
-/* Optional animation for text fade-in (if any overlay text) */
+/* Optional animation for text fade-in */
 @keyframes fadeInUp {
   from {
     opacity: 0;
@@ -556,7 +556,7 @@ nav a.active::after {
   margin-bottom: 0.5rem;
 }
 
-/* ===== Services Section ===== */
+/*  Services Section  */
 .services {
   padding: 5rem 2rem;
   background: transparent;
@@ -570,7 +570,7 @@ nav a.active::after {
   font-size: 1.1rem;
 }
 
-/* ===== Grid Layout ===== */
+/*  Grid Layout */
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -579,7 +579,7 @@ nav a.active::after {
   max-width: 1200px;
 }
 
-/* ===== Card Base Styling ===== */
+/* Card Base Styling  */
 .card {
   border-radius: 10px;
   position: relative;
@@ -613,7 +613,7 @@ nav a.active::after {
   box-shadow: 0 15px 30px rgba(0,0,0,0.2);
 }
 
-/* ===== Card Header ===== */
+/* Card Header  */
 .card h3 {
   font-size: 1.3rem;
   margin-bottom: 0.5rem;
@@ -630,7 +630,7 @@ nav a.active::after {
   color: var(--white);
 }
 
-/* ===== Card Body ===== */
+/* Card Body */
 .card p {
   color: rgba(255,255,255,0.9);
   position: relative;
@@ -638,7 +638,7 @@ nav a.active::after {
   font-size: 0.9rem;
 }
 
-/* ===== Plus Icon ===== */
+/*  Plus Icon*/
 .card .plus-icon {
   position: absolute;
   top: 1.5rem;
@@ -664,7 +664,7 @@ nav a.active::after {
   transform: rotate(90deg);
 }
 
-/* ===== Card Menu ===== */
+/* Card Menu  */
 .card-menu {
   position: absolute;
   top: 4rem;
@@ -724,12 +724,12 @@ nav a.active::after {
   border-radius: 0 0 5px 5px;
 }
 
-/* ===== Specific Card Backgrounds ===== */
+/*  Specific Card Backgrounds  */
 .card.security { background-image: url('https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=2070&q=80'); }
 .card.business-intel { background-image: url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1115&q=80'); }
 .card.banking { background-image: url('../images/abstract-cybersecurity-concept-design.jpg'); }
 
-/* ===== Explore Card Styling ===== */
+/* Card Styling  */
 .card.explore {
   background-color: var(--secondary);
   color: var(--white);
@@ -762,14 +762,14 @@ nav a.active::after {
   transform: translateX(5px);
 }
 
-/* ===== Card Footer ===== */
+/*  Card Footer  */
 .card-footer {
   margin-top: 15px;
   padding-top: 10px;
   border-top: 1px solid #e0e0e0;
 }
 
-/* ===== Read More Links ===== */
+/*  Read More Links  */
 .read-more-link {
   color: var(--orange);
   text-decoration: none;
@@ -913,7 +913,7 @@ footer {
   /* Mobile menu button styling */
   .mobile-menu {
     display: block;
-    color: var(--white) !important;
+    color: var(--white) ;
     z-index: 1000;
     background: transparent;
     border: none;
@@ -923,7 +923,7 @@ footer {
   /* Mobile navigation */
   nav ul {
     position: fixed;
-    top: 0; /* Position below header */
+    top: 0; 
     left: -100%;
     width: 80%;
     height: calc(100vh - 70px);
@@ -964,7 +964,7 @@ footer {
     padding: 0.5rem 0;
   }
 
-  /* === Final Dropdown Fix (ensure highest priority) === */
+  /*Dropdown Fix  */
 .dropdown-menu {
   display: none;
   opacity: 0;
@@ -974,9 +974,9 @@ footer {
 }
 
 .dropdown.active > .dropdown-menu {
-  display: block !important;
-  opacity: 1 !important;
-  max-height: 500px !important;
+  display: block;
+  opacity: 1 ;
+  max-height: 500px ;
 }
 
 
@@ -990,7 +990,6 @@ footer {
   }
 
   .dropdown > a::after {
-    content: '▼';
     font-size: 0.7rem;
     transition: transform 0.3s ease;
   }
@@ -999,7 +998,7 @@ footer {
     transform: rotate(180deg);
   }
 
-  /* Close menu when clicking on links */
+  /* Close menu  */
   nav ul li:not(.dropdown) a {
     width: 100%;
     display: block;
@@ -1023,7 +1022,7 @@ footer {
 
   .hero .overlay {
     bottom: auto;
-    top: 45%; /* Moves the overlay up slightly from the center */
+    top: 45%;
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
@@ -1273,7 +1272,7 @@ button:focus,
       border-color: rgba(233, 30, 99, 0.4);
     }
 
-    /* Glow effect for better visibility */
+    /* Glow effect  */
     .shape.glow {
       box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
     }
@@ -1656,7 +1655,7 @@ button:focus,
   }
 }
 
-/* === MAIN CONTENT === */
+/*  MAIN CONTENT  */
         .event-container1 {
             max-width: 1200px;
             margin: 0 auto;
@@ -1672,7 +1671,7 @@ button:focus,
             font-weight: 700;
         }
         
-        /* === TOGGLE BUTTONS === */
+        /*  TOGGLE BUTTONS  */
         .event-toggle {
             text-align: center;
             margin-bottom: 30px;
@@ -1703,7 +1702,7 @@ button:focus,
             box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
         }
         
-        /* === EVENTS GRID === */
+        /*  EVENTS GRID */
         .events-container {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
@@ -1711,7 +1710,7 @@ button:focus,
             margin-top: 2px;
         }
         
-        /* === EVENT CARDS === */
+        /* EVENT CARDS */
         .event-card {
             background: white;
             border-radius: 12px;
@@ -1819,7 +1818,7 @@ button:focus,
             color: #2c3e50;
         }
         
-        /* === BUTTONS === */
+        /*  BUTTONS  */
         .btn {
             padding: 10px 20px;
             border: none;
@@ -1850,7 +1849,7 @@ button:focus,
             box-shadow: none;
         }
         
-        /* === EMPTY STATE === */
+        /*  EMPTY STATE  */
         .empty-state {
             text-align: center;
             padding: 60px 20px;
@@ -1870,7 +1869,7 @@ button:focus,
             color: #2c3e50;
         }
         
-        /* === SECTIONS === */
+        /*  SECTIONS */
         .events-section {
             display: none;
             opacity: 0;
@@ -1881,7 +1880,7 @@ button:focus,
             display: block;
             opacity: 1;
         }  
-        /* === RESPONSIVE === */
+        /* RESPONSIVE  */
         @media (max-width: 768px) {
             .events-container {
                 grid-template-columns: 1fr;
@@ -1905,7 +1904,7 @@ button:focus,
           }
 
 /* About Us*/
-/* About Us Section Styles */
+
 .about-us-section {
   padding: 100px 0 80px;
   background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
@@ -2282,7 +2281,6 @@ button:focus,
   }
 }
 
-/*About us section*/
 /* Mission Vision Section */
 .mission-vision-section {
   padding: 20px 0;
@@ -2682,7 +2680,7 @@ button:focus,
   display: flex;
   flex-direction: column;
   justify-content: center;
-  overflow-y: auto; /* Allow small scroll only inside form if needed */
+  overflow-y: auto; 
 }
 
 .form-header h2 {
@@ -2751,7 +2749,7 @@ button:focus,
   background: #0056b3;
 }
 
-/* === Messages === */
+/* Messages */
 .messages {
   list-style: none;
   padding: 8px 0;
@@ -2774,7 +2772,7 @@ button:focus,
   font-size: 12px;
 }
 
-/* === Responsive Layout === */
+/*  Responsive Layout */
 @media (max-width: 900px) {
   .contact-container {
     flex-direction: column;
@@ -2804,7 +2802,7 @@ section {
   font-family: 'Inter', sans-serif;
 }
 
-/* === CONTAINER === */
+/*  CONTAINER  */
 .verify-container {
   max-width: 850px;
   margin: 0 auto;
@@ -2814,7 +2812,7 @@ section {
   box-shadow: 0 3px 10px rgba(0,0,0,0.05);
 }
 
-/* === HEADER === */
+/*  HEADER  */
 .verify-container h1 {
   font-family: 'Inter', serif;
   text-align: center;
@@ -2830,14 +2828,14 @@ section {
   font-size: 0.95rem;
 }
 
-/* === FLEX LAYOUT === */
+/* FLEX LAYOUT  */
 .verify-flex {
   display: flex;
   gap: 25px;
   align-items: flex-start;
 }
 
-/* === EVENT DETAILS (LEFT) === */
+/* EVENT DETAILS (LEFT) */
 .payment-details {
   flex: 1;
   background: #f0f4ff;
@@ -2869,7 +2867,7 @@ section {
   color: #111;
 }
 
-/* === FORM (RIGHT SIDE) === */
+/* FORM (RIGHT SIDE) */
 .verify-form {
   flex: 1;
 }
@@ -2907,7 +2905,7 @@ form {
   outline: none;
 }
 
-/* === BUTTON === */
+/*  BUTTON  */
 .btn.btn-accent {
   background: #004aad;
   color: #fff;
@@ -2925,7 +2923,7 @@ form {
 }
 
 
-/* === MESSAGES === */
+
 /* Message Popup Styles */
 .message-popup {
   position: fixed;
@@ -2974,7 +2972,7 @@ form {
 }
 
 
-/* === BACK LINK === */
+/* BACK LINK */
 .back-link {
   display: inline-block;
   margin-top: 15px;
@@ -2988,14 +2986,14 @@ form {
   text-decoration: underline;
 }
 
-/* === RESPONSIVE === */
+/* RESPONSIVE */
 @media (max-width: 768px) {
   .verify-flex {
     flex-direction: column;
   }
 }
 
-/* === PAYMENT INSTRUCTIONS ===*/
+/* PAYMENT INSTRUCTIONS  */
  .payment-container {
       max-width: 1000px;
       margin: 40px auto;
@@ -3112,7 +3110,7 @@ form {
         padding-top: 20px;
       }
     }
-/* === COMPANY OVERVIEW (SIDE-BY-SIDE FIXED) === */
+/*  COMPANY OVERVIEW */
 .company-overview {
   background: 
     linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.6)),
@@ -3212,7 +3210,7 @@ form {
   color: #fff;
 }
 
-/* === RESPONSIVE DESIGN === */
+/*  RESPONSIVE DESIGN  */
 @media (max-width: 900px) {
   .overview-container {
     flex-direction: column;
@@ -3354,7 +3352,7 @@ form {
   }
 }
 
-/* ==== Partners Section ==== */
+/*  Partners Section  */
 .partners {
   padding: 6rem 10% 4rem;
   background: #f8f9fc;
@@ -3363,7 +3361,7 @@ form {
   overflow: hidden;
 }
 
-/* ===== Partners Section Container ===== */
+/*  Partners Section Container */
 .partners {
   width: 100%;
   overflow: hidden;
@@ -3371,7 +3369,7 @@ form {
   padding: 0;
 }
 
-/* ===== TOP TEXT SECTION (FULLSCREEN IMAGE) ===== */
+/*  TOP TEXT SECTION  */
 .partners-hero {
   height: 80vh;
   background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)),
@@ -3400,7 +3398,7 @@ form {
   color: #eaeaea;
 }
 
-/* ===== SLIDESHOW SECTION BELOW TEXT ===== */
+/* SLIDESHOW SECTION BELOW TEXT  */
 .partners-slideshow {
   position: relative;
   height: 250px;
@@ -3436,7 +3434,7 @@ form {
   transform: scale(1.08);
 }
 
-/* ===== Responsive ===== */
+/* Responsive */
 @media (max-width: 768px) {
   .partners-hero {
     justify-content: center;

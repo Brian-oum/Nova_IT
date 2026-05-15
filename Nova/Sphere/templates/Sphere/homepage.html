@@ -12,7 +12,7 @@
   <link href="https://fonts.googleapis.com/css2?family=My+Soul&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-  <!-- Your CSS -->
+  <!--  CSS -->
   <link rel="stylesheet" href="{% static 'Sphere/css/style.css' %}">
 </head>
 <body>
@@ -37,6 +37,18 @@
             <li><a href="{% url 'cloud' %}">Cloud Computing</a></li>
           </ul>
         </li>
+         <!-- SWAS TASKS -->
+        <li class="dropdown"></li>
+        <a href="{% url 'task_list' %}">Tasks</a>
+        <ul class="dropdown-menu">
+            <li><a href="{% url 'task_list' %}">Browse Tasks</a></li>
+            <li><a href="{% url 'post_task' %}">Post a Task</a></li>
+            {% if user.is_authenticated %}
+              <li><a href="{% url 'dashboard' %}">My Dashboard</a></li>
+            {% endif %}
+        </ul>
+        </li>
+
         <li><a href="{% url 'events' %}">Events</a> </li>
         <li><a href="{%url 'contact' %}">Contact Us</a></li>
       </ul>
@@ -253,6 +265,7 @@
           <li><a href="{%url 'homepage%'}">Home</a></li>
           <li><a href="{%url 'about%'}">About Us</a></li>
           <li><a href="{%url 'contact'%}">Contact</a></li>
+          <li><a href="{% url 'task_list' %}">SWAS Tasks</a></li> 
         </ul>
       </div>
       
